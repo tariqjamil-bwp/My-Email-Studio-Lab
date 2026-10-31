@@ -5,7 +5,7 @@ Hi {{first_name}},
 
 A good kitchen or bathroom renovation starts on paper, not on site. Here is how our process works, step by step.
 
-**1. We listen.** We learn how you use your kitchen or bathroom today and what you hope it will feel like tomorrow.
+**1. We listen.** We learn how you cook, wash and move through your home today, and what you hope it will feel like tomorrow.
 
 **2. We sketch.** Our architects turn your ideas into clear design sketches, shaping the first vision of your space.
 

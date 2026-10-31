@@ -3,10 +3,10 @@ Preview: The questions homeowners ask us most, in plain words.
 
 Hi {{first_name}},
 
-Here are the questions first-time renovators ask us most often.
+If this is your first renovation, you may have a few questions. Here are the ones we hear most often from homeowners.
 
 **Do I need a finished design before work starts?**
-Usually, the design comes first, so the main decisions are made on paper before work begins. For a first renovation, that means fewer surprises along the way.
+Usually, the design comes first, so the main decisions are made on paper before work begins.
 
 **How much will it cost?**
 Costs depend on the site, the scope and the materials. We give you an estimate based on your project.
@@ -14,8 +14,8 @@ Costs depend on the site, the scope and the materials. We give you an estimate b
 **How long will it take?**
 Timelines depend on the size and complexity of your project. We'll talk through a realistic schedule once we've seen your space.
 
-**Can you design just one room?**
-Our design work covers whole-home remodels and interior design. Ask us about a single room, and we'll tell you what we can do.
+**I've never renovated before. Where do I start?**
+Start with a conversation. Tell us how you live and what you'd like to change, and we'll talk you through each step.
 
 [Ask us your own question](https://naqshar.com/residential/)
 

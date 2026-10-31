@@ -3,9 +3,9 @@ Preview: From first conversation to a plan you can build from.
 
 Hi {{first_name}},
 
-If this is your first renovation, it helps to know what to expect. Here is how our process works, step by step.
+A good renovation starts on paper, not on site. If this is your first one, here is how our process works, step by step.
 
-**1. We listen.** We learn how you use your home today and what you hope it will feel like tomorrow, with no jargon and no rush.
+**1. We listen.** We learn how you use your home today and what you hope it will feel like tomorrow, with no experience needed.
 
 **2. We sketch.** Our architects turn your ideas into clear design sketches, shaping the first vision of your space.
 

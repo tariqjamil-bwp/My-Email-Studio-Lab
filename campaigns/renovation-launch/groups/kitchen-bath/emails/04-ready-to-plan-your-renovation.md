@@ -5,7 +5,7 @@ Hi {{first_name}},
 
 Over the past few weeks, we've shared how our design process works and answered the questions we hear most. If you're ready to plan your kitchen or bathroom, now is a good time.
 
-Request a quote, and our team will talk through your project, your kitchen or bathroom, and your goals. You'll receive an estimate based on your project, so you can plan with confidence.
+Request a quote, and our team will talk through your kitchen or bathroom, your space and your goals. You'll receive an estimate based on your project, so you can plan with confidence.
 
 [Request your quote](https://naqshar.com/residential/)
 

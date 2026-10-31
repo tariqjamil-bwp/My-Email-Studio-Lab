@@ -6,7 +6,7 @@ Hi {{first_name}},
 Here are the questions we hear most often from homeowners planning a kitchen or bathroom renovation.
 
 **Do I need a finished design before work starts?**
-Usually, the design comes first, so the main decisions, such as the layout of your kitchen or bathroom, are made on paper before work begins.
+Usually, the design comes first, so the main decisions are made on paper before work begins.
 
 **How much will it cost?**
 Costs depend on the site, the scope and the materials. We give you an estimate based on your project.
@@ -14,8 +14,8 @@ Costs depend on the site, the scope and the materials. We give you an estimate b
 **How long will it take?**
 Timelines depend on the size and complexity of your project. We'll talk through a realistic schedule once we've seen your space.
 
-**Can you design just one room?**
-Our design work covers whole-home remodels and interior design. Ask us about a single room, and we'll tell you what we can do.
+**Can you design just a kitchen or bathroom?**
+Our design work covers whole-home remodels and interior design. Ask us about a kitchen or bathroom, and we'll tell you what we can do.
 
 [Ask us your own question](https://naqshar.com/residential/)
 

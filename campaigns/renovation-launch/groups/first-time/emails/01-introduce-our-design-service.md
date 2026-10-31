@@ -3,9 +3,9 @@ Preview: Renovation design for homes that are planned to last.
 
 Hi {{first_name}},
 
-New to renovating? Starting out can feel like a lot, and a clear plan makes it feel much more manageable.
+Planning your first renovation? It's normal to have plenty of questions, and we're glad to help you find your way.
 
-At Naqshar Architect Studio, we design renovations for homeowners across Pakistan, from a single room to a whole-home remodel, with first-time renovators guided at every step. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
+At Naqshar Architect Studio, we design renovations for homeowners across Pakistan, from a first renovation to a whole-home remodel. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
 
 Our approach is simple: thoughtful, functional design, planned for how you'll use the space, with a lasting result in mind.
 

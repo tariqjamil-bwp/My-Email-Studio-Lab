@@ -3,9 +3,9 @@ Preview: Renovation design for homes that are planned to last.
 
 Hi {{first_name}},
 
-Thinking about a whole-home renovation? It's a big project, and it deserves a considered plan.
+Thinking about renovating your whole home? You're not alone in wanting a home that works better and feels more like yours.
 
-At Naqshar Architect Studio, we design renovations for homeowners across Pakistan, from a single room to a whole-home remodel that ties your spaces together. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
+At Naqshar Architect Studio, we design renovations for homeowners across Pakistan, from a single room to a whole-home remodel that brings every room together. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
 
 Our approach is simple: thoughtful, functional design, planned for how you'll use the space, with a lasting result in mind.
 
