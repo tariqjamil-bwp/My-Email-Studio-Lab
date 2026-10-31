@@ -13,7 +13,7 @@ A good renovation starts on paper, not on site. Here is how our process works, s
 
 **4. Skilled builders bring it to life.** With the plan in hand, the work is carried out with care and precision.
 
-[See how our design service works for homeowners](https://naqshar.example/renovation)
+[See how our design service works for homeowners](https://naqshar.com/residential/)
 
 Soon, we'll answer the questions homeowners ask us most often.
 

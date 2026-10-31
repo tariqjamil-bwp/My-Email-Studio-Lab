@@ -9,7 +9,7 @@ At Naqshar Architect Studio, we design renovations for homeowners across Pakista
 
 Our approach is simple: thoughtful, functional design, planned for how you'll use the space, with a lasting result in mind.
 
-[Explore our renovation design service](https://naqshar.example/renovation)
+[Explore our renovation design service](https://naqshar.com/residential/)
 
 Over the next few weeks, we'll show you how the process works, answer common questions, and help you take your next step.
 

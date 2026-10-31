@@ -7,7 +7,7 @@ Over the past few weeks, we've shared how our design process works and answered 
 
 Request a quote, and our team will talk through your project, your space and your goals. You'll receive an estimate based on your project, so you can plan with confidence.
 
-[Request your quote](https://naqshar.example/renovation)
+[Request your quote](https://naqshar.com/residential/)
 
 We look forward to helping you plan a home that's thoughtful, functional and lasting.
 

@@ -17,7 +17,7 @@ Timelines depend on the size and complexity of your project. We'll talk through 
 **Can you design just one room?**
 Our design work covers whole-home remodels and interior design. Ask us about a single room, and we'll tell you what we can do.
 
-[Ask us your own question](https://naqshar.example/renovation)
+[Ask us your own question](https://naqshar.com/residential/)
 
 Warmly,
 The Naqshar Architect Studio team
