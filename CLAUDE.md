@@ -19,6 +19,10 @@ Planning and writing email campaigns for a small business. The studio holds the 
 2. Never send email to real people. Drafts and plans stay in this project.
 3. Ask before deleting anything.
 
+## Brand voice
+
+@brand/voice.md
+
 ## Full layout
 
 ```
