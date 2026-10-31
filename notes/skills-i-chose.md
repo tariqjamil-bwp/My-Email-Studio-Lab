@@ -7,6 +7,7 @@ I searched skills.sh for email marketing, email sequences, campaign plans and Re
 **1. For writing campaigns: `coreyhaines31/marketingskills`**
 - It has the most useful skills for this studio: `emails` for multi-email sequences, `copywriting` for the words themselves, and `cold-email` for outreach.
 - It's the most-used source in the results: about 81K installs for `emails` and 241K for `copywriting`.
+- Renamed: `email-sequence` was merged into `emails`. Its skills.sh page still loads, but the GitHub folder is gone (checked today), so use `emails` instead.
 - It has 57,560 stars and is actively updated (last push 31 October 2026).
 - The catch: it's published by one person, not a company. Treat its advice as a starting point, and check it against your own brand voice.
 
