@@ -12,10 +12,10 @@ Usually, the design comes first, so the main decisions are made on paper before 
 Costs depend on the site, the scope and the materials. We give you an estimate based on your project.
 
 **How long will it take?**
-Timelines depend on the size and complexity of your project. We will talk through a realistic schedule once we have seen your space.
+Timelines depend on the size and complexity of your project. We'll talk through a realistic schedule once we've seen your space.
 
 **Can you design just one room?**
-Our design work covers whole-home remodels and interior design. Ask us about a single room, and we will tell you what we can do.
+Our design work covers whole-home remodels and interior design. Ask us about a single room, and we'll tell you what we can do.
 
 [Ask us your own question](https://naqshar.example/renovation)
 
