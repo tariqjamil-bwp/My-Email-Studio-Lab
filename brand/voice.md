@@ -30,6 +30,7 @@ We write to homeowners planning a renovation. We sound like a knowledgeable frie
 ## Claims we must never make
 
 - A fixed price for any project. Estimates depend on the site, the scope and the materials.
+- Any health or wellness claim, such as a detox, cure or healing benefit. We design homes and buildings, not health products.
 
 ## Claims from our website
 
