@@ -1,0 +1,25 @@
+first_name,last_name,email,group,joined_on,consent
+Ayesha,Khan,ayesha.khan@example.com,first-time,2026-09-14,enquiry form
+Tom,Becker,tom.becker@example.com,kitchen-bath,2026-09-22,enquiry form
+Hamid,Raza,hamid.raza@example.com,first-time,2026-09-03,enquiry form
+Sana,Iqbal,sana.iqbal@example.com,first-time,2026-09-08,enquiry form
+Bilal,Hussain,bilal.hussain@example.com,first-time,2026-09-17,enquiry form
+Maryam,Siddiqui,maryam.siddiqui@example.com,first-time,2026-09-25,enquiry form
+Zain,Qureshi,zain.qureshi@example.com,first-time,2026-10-02,enquiry form
+Hira,Malik,hira.malik@example.com,first-time,2026-10-09,enquiry form
+Lubna,Chaudhry,lubna.chaudhry@example.com,first-time,2026-10-16,enquiry form
+Adnan,Farooq,adnan.farooq@example.com,kitchen-bath,2026-09-05,enquiry form
+Nadia,Javed,nadia.javed@example.com,kitchen-bath,2026-09-11,enquiry form
+Usman,Tariq,usman.tariq@example.com,kitchen-bath,2026-09-19,enquiry form
+Fatima,Rehman,fatima.rehman@example.com,kitchen-bath,2026-09-27,enquiry form
+Faisal,Mehmood,faisal.mehmood@example.com,kitchen-bath,2026-10-04,enquiry form
+Rabia,Naeem,rabia.naeem@example.com,kitchen-bath,2026-10-12,enquiry form
+Omar,Sheikh,omar.sheikh@example.com,kitchen-bath,2026-10-20,enquiry form
+Saima,Akhtar,saima.akhtar@example.com,whole-home,2026-09-01,enquiry form
+Kamran,Ahmed,kamran.ahmed@example.com,whole-home,2026-09-09,enquiry form
+Noor,Fatima,noor.fatima@example.com,whole-home,2026-09-16,enquiry form
+Ali,Haider,ali.haider@example.com,whole-home,2026-09-23,enquiry form
+Zara,Abbasi,zara.abbasi@example.com,whole-home,2026-10-01,enquiry form
+Irfan,Butt,irfan.butt@example.com,whole-home,2026-10-06,enquiry form
+Komal,Sarwar,komal.sarwar@example.com,whole-home,2026-10-15,enquiry form
+Waqas,Nawaz,waqas.nawaz@example.com,whole-home,2026-10-22,enquiry form
