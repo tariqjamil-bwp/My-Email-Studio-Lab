@@ -16,7 +16,7 @@ Planning and writing email campaigns for a small business. The studio holds the 
 ## Rules
 
 1. Write in plain English.
-2. Never send email to real people. Drafts and plans stay in this project.
+2. Never send email to real people. Drafts and plans stay in this project. The only exception is sending through Resend, and only to Resend's test addresses (ending in @resend.dev) and to the studio owner's own address, tj.yazman@gmail.com. A guard will enforce this in the next step.
 3. Ask before deleting anything.
 
 ## Brand voice
