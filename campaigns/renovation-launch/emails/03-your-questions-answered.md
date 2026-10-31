@@ -6,7 +6,7 @@ Hi {{first_name}},
 Here are the questions we hear most often from homeowners planning a renovation.
 
 **Do I need a finished design before work starts?**
-Yes. The design comes first, so every decision is made on paper before any work begins.
+Usually, the design comes first, so the main decisions are made on paper before work begins.
 
 **How much will it cost?**
 Costs depend on the site, the scope and the materials. We give you an estimate based on your project.
@@ -15,7 +15,7 @@ Costs depend on the site, the scope and the materials. We give you an estimate b
 Timelines depend on the size and complexity of your project. We will talk through a realistic schedule once we have seen your space.
 
 **Can you design just one room?**
-Yes. Our design work covers single rooms, such as a kitchen or bathroom, as well as whole-home remodels.
+Our design work covers whole-home remodels and interior design. Ask us about a single room, and we will tell you what we can do.
 
 [Ask us your own question](https://naqshar.example/renovation)
 

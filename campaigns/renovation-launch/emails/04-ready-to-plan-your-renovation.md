@@ -9,7 +9,7 @@ Request a quote, and our team will talk through your project, your space and you
 
 [Request your quote](https://naqshar.example/renovation)
 
-We look forward to helping you plan a home that is thoughtful, functional and built to last.
+We look forward to helping you plan a home that is thoughtful, functional and lasting.
 
 Warmly,
 The Naqshar Architect Studio team

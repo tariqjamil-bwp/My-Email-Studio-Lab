@@ -9,13 +9,13 @@ A good renovation starts on paper, not on site. Here is how our process works, s
 
 **2. We sketch.** Our architects turn your ideas into clear design sketches, shaping the first vision of your space.
 
-**3. We finalise.** Once the design is settled, we plan the details so every decision is made before work begins.
+**3. We finalise.** Once the design is settled, we plan the details so the main decisions are settled on paper before work begins.
 
 **4. Skilled builders bring it to life.** With the plan in hand, the work is carried out with care and precision.
 
 [See how our design service works for homeowners](https://naqshar.example/renovation)
 
-Next week, we will answer the questions homeowners ask us most often.
+Soon, we will answer the questions homeowners ask us most often.
 
 Warmly,
 The Naqshar Architect Studio team
