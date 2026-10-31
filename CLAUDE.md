@@ -10,7 +10,7 @@ Planning and writing email campaigns for a small business. The studio holds the 
 
 - `brand/`: how the brand sounds, including `voice.md`.
 - `leads/`: the customer list (`leads.csv`) and rules for that folder (`leads/CLAUDE.md`).
-- `campaigns/`: campaign plans and their drafts. `steep-club-launch/` is the first campaign.
+- `campaigns/`: campaign plans and their drafts. `renovation-launch/` is the first campaign.
 - `notes/`: research notes, such as the shortlist of skills in `notes/skills-i-chose.md`.
 
 ## Rules
@@ -32,7 +32,7 @@ My-Email-Studio-Lab/
 ├── leads/
 │   ├── leads.csv        24 practice customers
 │   └── CLAUDE.md        rules for this folder only
-├── campaigns/steep-club-launch/
+├── campaigns/renovation-launch/
 │   ├── plan.md          the campaign plan
 │   ├── emails/          4 launch emails
 │   └── groups/          a version per customer group
