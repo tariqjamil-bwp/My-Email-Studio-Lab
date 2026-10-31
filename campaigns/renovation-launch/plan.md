@@ -6,7 +6,7 @@ Status: draft from the marketing plugin's campaign-plan skill. Anything marked *
 
 - **Campaign name:** Renovation Launch
 - **Summary:** Introduce Naqshar's renovation design service to homeowners on our list, through a four-email sequence over four weeks. Each email is written for one of three customer groups, and the sequence ends with a request for a quote.
-- **Primary objective:** 30 quote requests in the first month of the campaign (conversion).
+- **Primary objective:** 30 quote requests by Sunday 29 November 2026, the last day of the four-week campaign (conversion).
 - **Secondary objectives:**
   - Learn which customer group responds to which message.
   - Get enquiries from about 200 homeowners who have already expressed interest.
@@ -44,14 +44,14 @@ Status: draft from the marketing plugin's campaign-plan skill. Anything marked *
 
 Start date: **ASSUMPTION:** "The first Monday of next month" is Monday 2 November 2026. The four weeks are shown below, and the schedule should be adjusted if the launch date changes.
 
-| Week | Dates (Mon to Sun) | Content piece | Channel | Owner/Notes | Status |
-|------|--------------------|---------------|---------|-------------|--------|
-| 1 | 2 to 8 Nov 2026 | Email 1: introduce our renovation design service | Email | Group versions needed | Not started |
-| 2 | 9 to 15 Nov 2026 | Email 2: what the design process includes | Email | Group versions needed | Not started |
-| 3 | 16 to 22 Nov 2026 | Email 3: answers to common questions | Email | Group versions needed | Not started |
-| 4 | 23 to 29 Nov 2026 | Email 4: request a quote | Email | Group versions needed | Not started |
+| Week | Dates (Mon to Sun) | Send day | Content piece | Audience group | Channel | Owner/Notes | Status |
+|------|--------------------|----------|---------------|----------------|---------|-------------|--------|
+| 1 | 2 to 8 Nov 2026 | Mon 2 Nov | Email 1: introduce our renovation design service | All three groups, one version each | Email | Group versions needed | Not started |
+| 2 | 9 to 15 Nov 2026 | Mon 9 Nov | Email 2: what the design process includes | All three groups, one version each | Email | Group versions needed | Not started |
+| 3 | 16 to 22 Nov 2026 | Mon 16 Nov | Email 3: answers to common questions | All three groups, one version each | Email | Group versions needed | Not started |
+| 4 | 23 to 29 Nov 2026 | Mon 23 Nov | Email 4: request a quote | All three groups, one version each | Email | Group versions needed | Not started |
 
-Send days within each week are to be confirmed. **ASSUMPTION:** Mondays.
+Send day: every Monday. **ASSUMPTION:** Monday sends, so the sends fall on 2, 9, 16 and 23 November 2026.
 
 **Dependencies:**
 - The group versions depend on the customer groups in `leads/leads.csv`.
@@ -66,7 +66,7 @@ Send days within each week are to be confirmed. **ASSUMPTION:** Mondays.
 
 ## 7. Success metrics
 
-- **Primary KPI:** Quote requests in the first month. **Target: 30.**
+- **Primary KPI:** Quote requests by Sunday 29 November 2026. **Target: 30.**
 - **Secondary KPIs:** Email open rate, click rate, unsubscribe rate, and quote requests by group.
 - **Tracking:** Resend is planned in `.mcp.json` but not connected yet. Until then, track results manually.
 - **Reporting cadence:** **ASSUMPTION:** Weekly during the campaign.
