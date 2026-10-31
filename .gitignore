@@ -1,0 +1,6 @@
+# Local Claude Code settings, personal to this machine
+.claude/settings.local.json
+
+# macOS and system files
+.DS_Store
+Thumbs.db

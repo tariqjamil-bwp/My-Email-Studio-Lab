@@ -1,6 +1,25 @@
 # My-Email-Studio-Lab
 
-Project guide for Claude. The studio's folder layout:
+Project guide for Claude.
+
+## What the studio is for
+
+Planning and writing email campaigns for a small business. The studio holds the brand voice, the customer leads, the campaign plans and drafts, and research notes.
+
+## Folders
+
+- `brand/`: how the brand sounds, including `voice.md`.
+- `leads/`: the customer list (`leads.csv`) and rules for that folder (`leads/CLAUDE.md`).
+- `campaigns/`: campaign plans and their drafts. `steep-club-launch/` is the first campaign.
+- `notes/`: research notes, such as the shortlist of skills in `notes/skills-i-chose.md`.
+
+## Rules
+
+1. Write in plain English.
+2. Never send email to real people. Drafts and plans stay in this project.
+3. Ask before deleting anything.
+
+## Full layout
 
 ```
 My-Email-Studio-Lab/
@@ -13,6 +32,7 @@ My-Email-Studio-Lab/
 │   ├── plan.md          the campaign plan
 │   ├── emails/          4 launch emails
 │   └── groups/          a version per customer group
+├── notes/               research notes
 ├── .claude/
 │   ├── rules/emails.md  rules for every email file
 │   ├── skills/personalize/
