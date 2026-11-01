@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "file": "campaigns/renovation-launch/emails/03-your-questions-answered.md",
+      "line": 18,
+      "severity": "medium",
+      "problem": "Email 03 hedges on single-room work ('Ask us about a single room, and we'll tell you what we can do'; design work 'covers whole-home remodels and interior design'), but email 01 promises renovations 'from a single room to a whole-home remodel'. The kitchen-bath versions have the same conflict: 01 promises 'a kitchen or bathroom update' while 03 hedges.",
+      "fix": "Confirm what the studio takes on, then make emails 01 and 03 agree in the main and kitchen-bath versions. If single-room work is not confirmed, soften email 01."
+    },
+    {
+      "file": "campaigns/renovation-launch/emails/02-how-a-design-comes-together.md",
+      "line": 14,
+      "severity": "medium",
+      "problem": "Step 4 ('Skilled builders bring it to life... the work is carried out with care and precision') implies the studio provides construction. plan.md describes the service as design work 'from concept to construction drawings'. This appears in the main email and all three group versions of email 02.",
+      "fix": "Confirm whether the studio offers construction or build management. If not, reword step 4, for example 'Your plan is ready for builders to work from.' Apply the change to all four versions."
+    },
+    {
+      "file": "campaigns/renovation-launch/emails/01-introduce-our-design-service.md",
+      "line": 8,
+      "severity": "low",
+      "problem": "'Homeowners across Pakistan' is a service-area claim not supported by brand/voice.md or plan.md. It appears in all four versions of email 01.",
+      "fix": "Confirm the studio's service area, or remove 'across Pakistan' from every version of email 01."
+    }
+  ]
+}
