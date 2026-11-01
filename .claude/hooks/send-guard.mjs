@@ -2,7 +2,9 @@
 // Allows sending only to Resend test addresses (@resend.dev) and the studio owner.
 // Anything unclear is blocked (fail closed).
 
-const OWNER = "owner@example.com";
+// The owner's address comes from MY_EMAIL (set in .claude/settings.local.json, which is not committed).
+// If it is not set, only @resend.dev addresses are allowed.
+const OWNER = (process.env.MY_EMAIL ?? "").trim().toLowerCase();
 const TEST_DOMAIN = "resend.dev";
 
 // Tools that send or reply or forward and carry explicit recipients.
@@ -46,7 +48,7 @@ function allow() {
 
 function isAllowed(address) {
   const a = address.trim().toLowerCase();
-  if (a === OWNER) return true;
+  if (OWNER && a === OWNER) return true;
   const at = a.lastIndexOf("@");
   return at > 0 && a.slice(at + 1) === TEST_DOMAIN;
 }
@@ -102,6 +104,7 @@ if (addresses.length === 0) {
 }
 const bad = addresses.filter((a) => !isAllowed(a));
 if (bad.length > 0) {
-  deny(`blocked ${name}. Not allowed: ${bad.join(", ")}. Only @${TEST_DOMAIN} addresses and ${OWNER} are allowed.`);
+  const allowedList = OWNER ? `@${TEST_DOMAIN} addresses and ${OWNER}` : `@${TEST_DOMAIN} addresses (MY_EMAIL is not set)`;
+  deny(`blocked ${name}. Not allowed: ${bad.join(", ")}. Only ${allowedList} are allowed.`);
 }
 allow();
