@@ -11,7 +11,7 @@ A good renovation starts on paper, not on site. If this is your first one, here 
 
 **3. We finalise.** Once the design is set, we plan the details so the main decisions are made on paper before work begins.
 
-**4. Skilled builders bring it to life.** With the plan in hand, the work is carried out with care and precision.
+**4. Your plan is ready to build from.** You finish with clear drawings that builders can work from.
 
 [See how our design service works for homeowners](https://naqshar.com/residential/)
 

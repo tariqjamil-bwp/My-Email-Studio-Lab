@@ -5,7 +5,7 @@ Hi {{first_name}},
 
 Thinking about a renovation? You're not alone in wanting a home that works better and feels more like yours.
 
-At Naqshar Architect Studio, we design renovations for homeowners across Pakistan, from a single room to a whole-home remodel. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
+At Naqshar Architect Studio, we design whole-home remodels and interior design for homeowners planning a renovation. Every project starts with a conversation about how you live, what you want to change, and what you want to keep.
 
 Our approach is simple: thoughtful, functional design, planned for how you'll use the space, with a lasting result in mind.
 
