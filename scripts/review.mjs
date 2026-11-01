@@ -40,7 +40,13 @@ if (run.error || run.status !== 0) {
   process.exit(2);
 }
 
-let out = JSON.parse(run.stdout);
+let out;
+try {
+  out = JSON.parse(run.stdout);
+} catch (err) {
+  console.error("claude did not return JSON:", err.message, "\n", run.stdout.slice(0, 500));
+  process.exit(2);
+}
 if (Array.isArray(out)) out = out[out.length - 1]; // list form: last item is the result
 const findings = out?.structured_output?.findings;
 if (!Array.isArray(findings)) {
