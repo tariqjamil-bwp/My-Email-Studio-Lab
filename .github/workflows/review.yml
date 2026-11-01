@@ -28,6 +28,7 @@ jobs:
       - name: Review changed campaigns
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           # Campaigns touched by this PR. test-bad is a deliberately bad sample, so skip it.
