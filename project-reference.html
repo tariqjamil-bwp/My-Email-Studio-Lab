@@ -1,0 +1,1182 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Email Studio Lab Assignment FDE-102 (Copy)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a mailroom workbook. Airmail stripe on top, a sticky step index on the left, one stamped card per step on the right. */
+:root {
+  --paper: #F4F6FA;
+  --sheet: #FFFFFF;
+  --ink: #14213D;
+  --muted: #586380;
+  --rule: #D8DEE8;
+  --blue: #1F4FA3;
+  --blue-soft: #E5ECF8;
+  --red: #C2362E;
+  --ok: #1B7A4D;
+  --ok-soft: #E2F3EA;
+  --warn-soft: #FFF3D9;
+  --mark: #FFE36E;
+  --mark-ink: #2B2400;
+  --code: #EEF1F6;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1422; --sheet: #151D2E; --ink: #E6EAF3; --muted: #9AA5BC; --rule: #28324A;
+    --blue: #8DAEFF; --blue-soft: #1C2747; --red: #F07D72; --ok: #6CD29B; --ok-soft: #14301F;
+    --warn-soft: #2D2714; --mark: #E8CB3C; --mark-ink: #1D1800; --code: #0F1626;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1422; --sheet: #151D2E; --ink: #E6EAF3; --muted: #9AA5BC; --rule: #28324A;
+  --blue: #8DAEFF; --blue-soft: #1C2747; --red: #F07D72; --ok: #6CD29B; --ok-soft: #14301F;
+  --warn-soft: #2D2714; --mark: #E8CB3C; --mark-ink: #1D1800; --code: #0F1626;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.airmail { height: 10px; background: repeating-linear-gradient(135deg, var(--red) 0 16px, var(--sheet) 16px 24px, var(--blue) 24px 40px, var(--sheet) 40px 48px); }
+.page { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 72px; }
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); font-weight: 800; font-stretch: 118%; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; font-weight: 800; font-stretch: 112%; }
+h3 { font-size: 1.3rem; font-weight: 700; font-stretch: 108%; }
+h4 { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+p { margin: 0; }
+a { color: var(--blue); }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code); padding: 0.08em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+ul, ol { margin: 0; padding-left: 1.25em; }
+li + li { margin-top: 4px; }
+
+/* Masthead */
+.mast { display: grid; gap: 18px; padding-bottom: 28px; }
+.kicker { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); font-weight: 600; }
+.lede { font-size: 1.15rem; max-width: 62ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.fact { font-family: var(--font-mono); font-size: 0.78rem; border: 1px solid var(--rule); background: var(--sheet); padding: 4px 10px; border-radius: 99px; }
+.intro { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; align-items: start; }
+.intro > * { min-width: 0; }
+.panel { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+.panel ol li, .panel ul li { padding-left: 2px; }
+.loop { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.loop li { margin: 0; background: var(--paper); border-radius: 8px; padding: 10px; display: grid; gap: 2px; font-size: 0.9rem; }
+.loop b { font-family: var(--font-display); font-stretch: 108%; font-size: 0.98rem; }
+.loop .n { font-family: var(--font-mono); font-size: 0.72rem; color: var(--blue); font-weight: 600; }
+pre.tree { margin: 0; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.55; background: var(--code); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+.tips { display: grid; gap: 8px; font-size: 0.94rem; }
+.tip { background: var(--warn-soft); border-radius: 8px; padding: 10px 12px; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 36px; margin-top: 8px; }
+.index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; display: grid; gap: 12px; padding-right: 4px; }
+.index details > summary { cursor: pointer; font-family: var(--font-display); font-weight: 700; font-stretch: 108%; list-style: none; }
+.index details > summary::-webkit-details-marker { display: none; }
+.progress { display: grid; gap: 6px; }
+.bar { height: 8px; background: var(--rule); border-radius: 99px; overflow: hidden; }
+.fill-bar { height: 100%; width: 0; background: var(--ok); transition: width 0.3s; }
+.count { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.index ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 1px; }
+.index li + li { margin-top: 0; }
+.index a { display: grid; grid-template-columns: 24px 1fr; gap: 6px; padding: 5px 8px; border-radius: 6px; text-decoration: none; color: var(--ink); font-size: 0.9rem; line-height: 1.3; }
+.index a:hover { background: var(--blue-soft); }
+.index a .i { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); padding-top: 1px; }
+.index a.is-done .i { color: var(--ok); }
+.index a.is-done .t { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rule); }
+.index .grp { margin-top: 8px; }
+.index .extra a { grid-template-columns: 1fr; color: var(--blue); }
+
+.steps { display: grid; gap: 26px; min-width: 0; }
+.part { display: grid; gap: 6px; padding-top: 18px; border-top: 2px solid var(--ink); }
+.part:first-child { border-top: 0; padding-top: 0; }
+.part .kicker { color: var(--blue); }
+.part p { color: var(--muted); max-width: 68ch; }
+
+.step { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 22px; display: grid; gap: 16px; scroll-margin-top: 16px; min-width: 0; }
+.step.is-done { border-color: var(--ok); }
+.head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.stamp { width: 58px; height: 64px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: 1.7rem; color: var(--red); background: var(--paper); border: 2px dashed var(--red); border-radius: 4px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px; }
+.obj { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--blue); border: 1px solid var(--blue); padding: 0 6px; border-radius: 3px; white-space: nowrap; }
+.learn { color: var(--muted); margin-top: 6px; max-width: 66ch; }
+.done { display: flex; gap: 8px; align-items: center; font-size: 0.9rem; font-weight: 700; cursor: pointer; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 99px; white-space: nowrap; }
+.done input { width: 18px; height: 18px; margin: 0; accent-color: var(--ok); }
+.step.is-done .done { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+
+.plain { border-left: 3px solid var(--red); padding: 2px 0 2px 14px; font-size: 1.02rem; max-width: 68ch; }
+.plain b { font-family: var(--font-display); font-stretch: 108%; }
+.note { background: var(--paper); border-radius: 8px; padding: 12px 14px; font-size: 0.95rem; display: grid; gap: 6px; }
+.note b.lbl { font-family: var(--font-display); font-stretch: 108%; }
+.note ol { display: grid; gap: 2px; }
+
+.pb { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; min-width: 0; }
+.pb-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 9px 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; color: var(--sheet); }
+.pb.build .tag { background: var(--blue); }
+.pb.check .tag { background: var(--ok); }
+.pb-head .where { font-size: 0.84rem; color: var(--muted); flex: 1 1 auto; }
+.copy { font: inherit; font-size: 0.85rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.copy:hover { border-color: var(--blue); color: var(--blue); }
+.copy.copied { border-color: var(--ok); color: var(--ok); }
+pre.prompt { margin: 0; padding: 14px; background: var(--code); color: var(--ink); font-family: var(--font-mono); font-size: 0.83rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+mark.fill { background: var(--mark); color: var(--mark-ink); border-radius: 3px; padding: 0 2px; }
+
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pair > * { min-width: 0; }
+.worked { background: var(--ok-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; font-size: 0.95rem; }
+.worked h4 { color: var(--ok); }
+.wrong { background: var(--warn-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; font-size: 0.95rem; }
+.exam { background: var(--blue-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; font-size: 0.93rem; }
+.exam h4 { color: var(--blue); }
+.exam .ovr { font-weight: 700; }
+
+/* Bottom sections */
+.closing { margin-top: 44px; display: grid; gap: 14px; }
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-display); font-stretch: 108%; font-size: 0.86rem; background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.n { font-family: var(--font-mono); white-space: nowrap; }
+.words { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.word { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; font-size: 0.93rem; display: grid; gap: 2px; }
+.word b { font-family: var(--font-display); font-stretch: 108%; }
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; gap: 18px; }
+  .index { position: static; max-height: none; }
+  .index ol { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .intro { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .loop { grid-template-columns: 1fr 1fr; }
+  .pair { grid-template-columns: 1fr; }
+  .step { padding: 16px; }
+  .head { grid-template-columns: auto minmax(0, 1fr); }
+  .head .done { grid-column: 1 / -1; justify-self: start; }
+  .stamp { width: 48px; height: 54px; font-size: 1.4rem; }
+}
+@media (prefers-reduced-motion: reduce) { .fill-bar { transition: none; } }
+</style>
+
+<div class="airmail" aria-hidden="true"></div>
+<div class="page">
+  <header class="mast">
+    <p class="kicker">A hands-on Claude Code course · no coding needed</p>
+    <h1>Email Studio Lab</h1>
+    <p class="lede">You will set up an email marketing studio and run it with Claude Code. Claude plans a launch campaign, writes the emails, personalizes them for each group of customers, and sends them, safely, to a practice email server. Along the way you use every Claude Code feature on the CCAR-F exam.</p>
+    <div class="facts">
+      <span class="fact">15 steps</span>
+      <span class="fact">about 30–60 min each</span>
+      <span class="fact">no real emails are sent</span>
+      <span class="fact">no Resend account needed</span>
+    </div>
+  </header>
+
+  <section class="intro" id="start" aria-label="Before you start">
+    <div class="panel">
+      <h2>Before you start</h2>
+      <ol>
+        <li>Install <b>Node.js 22 or newer</b> from nodejs.org. Check with <code>node --version</code>.</li>
+        <li>Install <b>Git</b>. Check with <code>git --version</code>. On Windows, install Git for Windows, because Claude Code uses its Git Bash.</li>
+        <li>Install <b>Claude Code</b>: <code>npm install -g @anthropic-ai/claude-code</code>, then sign in when you first run <code>claude</code>.</li>
+        <li>Make your studio folder and open Claude Code in it:<br><code>mkdir my-email-studio</code> · <code>cd my-email-studio</code> · <code>git init</code> · <code>claude</code></li>
+      </ol>
+      <h4>How every step works</h4>
+      <ol class="loop">
+        <li><span class="n">1 · BUILD</span><b>Paste the build prompt</b><span>In Claude Code, in your studio folder.</span></li>
+        <li><span class="n">2 · FRESH</span><b>Start a new session</b><span>Type <code>/exit</code>, then run <code>claude</code> again.</span></li>
+        <li><span class="n">3 · CHECK</span><b>Paste the check prompt</b><span>A fresh Claude tests your work. It didn't build it, so it's honest.</span></li>
+        <li><span class="n">4 · DONE</span><b>Answer its questions</b><span>Then tick Done on the step.</span></li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h2>Your studio at the end</h2>
+<pre class="tree">my-email-studio/
+├── CLAUDE.md            the studio's rules
+├── brand/voice.md       how the brand sounds
+├── leads/
+│   ├── leads.csv        24 practice customers
+│   └── CLAUDE.md        rules for this folder only
+├── campaigns/renovation-launch/
+│   ├── plan.md          the campaign plan
+│   ├── emails/          4 launch emails
+│   └── groups/          a version per customer group
+├── .claude/
+│   ├── rules/emails.md  rules for every email file
+│   ├── skills/personalize/
+│   └── hooks/send-guard.mjs
+├── .mcp.json            connection to Resend
+└── scripts/review.mjs   automatic review</pre>
+      <div class="tips">
+        <p class="tip"><b>Claude will ask permission</b> before it writes inside <code>.claude/</code> or to <code>.mcp.json</code>. That's normal. Read what it wants to do, then approve.</p>
+        <p class="tip"><b>No brand of your own?</b> Use the sample: Naqshar Architect Studio, a small architecture studio in Karachi launching a renovation design service for homeowners. The prompts below use it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="index" aria-label="Steps">
+      <div class="progress">
+        <div class="bar"><div class="fill-bar" id="fill"></div></div>
+        <span class="count" id="count">0 of 15 done</span>
+      </div>
+      <div class="grp"><h4>Part 1 · Plan and write</h4><ol id="nav-1"></ol></div>
+      <div class="grp"><h4>Part 2 · Send safely</h4><ol id="nav-2"></ol></div>
+      <div class="grp"><h4>Part 3 · Work like a team</h4><ol id="nav-3"></ol></div>
+      <div class="grp"><h4>Stretch</h4><ol id="nav-4"></ol></div>
+      <div class="grp extra"><ol><li><a href="#start">Before you start</a></li><li><a href="#exam-map">Exam map</a></li><li><a href="#words">Words you'll see</a></li></ol></div>
+    </nav>
+
+    <main class="steps">
+
+      <div class="part">
+        <p class="kicker">Part 1 · Steps 1–8</p>
+        <h2>Plan and write</h2>
+        <p>Set up the studio, give it a brand voice, plan a campaign and write the emails. Nothing gets sent in this part.</p>
+      </div>
+
+      <!-- STEP 1 -->
+      <section class="step" id="step-1" data-part="1" data-title="Look before you build">
+        <div class="head">
+          <div class="stamp">1</div>
+          <div>
+            <div class="meta"><span>Real-world habit</span><span class="obj">2.4</span></div>
+            <h3>Look before you build</h3>
+            <p class="learn">Search for skills other people made, and decide which ones to trust.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-1"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a skill is like an app for Claude. Before you build one, look in the app store. Download counts can be faked, so also check who made it.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">I'm setting up an email marketing studio in this folder. Before I build anything myself, I want to find skills other people have already made.
+
+1. Search the skills directory at skills.sh by running these one at a time:
+   npx skills find email marketing
+   npx skills find email sequence
+   npx skills find campaign plan
+   npx skills find resend
+2. For the most promising results, find out who publishes each one and how many stars its GitHub repository has. Look out for official publishers such as anthropics and resend.
+3. Write notes/skills-i-chose.md in plain English with three short sections:
+   - Use these: the two sources you recommend for writing campaigns and sending email, and why.
+   - Avoid these: two results you would not trust, and why.
+   - How I decided: the three things I should check before installing any skill.
+
+Don't install anything yet.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session: /exit, then claude, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check my work in notes/skills-i-chose.md. Don't change any files. Test it, don't just read it:
+
+1. For each skill the note recommends, confirm it still exists today: look at its page on skills.sh or its folder in the GitHub repository. Tell me if any has been renamed, merged or removed.
+2. Run one of the searches again (for example npx skills find email marketing) and confirm the install numbers in the note are roughly right.
+3. Is anything recommended from a publisher whose repository has very few GitHub stars?
+
+Give me a short table: Check | OK or Problem | What you found.
+Then ask me two quick questions, one at a time, to see if I understand why install counts alone aren't enough.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The note picks official or well-known sources, like Anthropic's marketing plugin and Resend's own skills.</li>
+            <li>It warns you off a result with thousands of installs but only a handful of GitHub stars.</li>
+            <li>The check may find a skill that was renamed. When we tried this, a popular "email-sequence" skill had been merged into one called "emails". Ask Claude to fix the note.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>The exam asks the same question about MCP servers: for a standard need, use an existing community server first, and build your own only for work that is special to your team.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="step" id="step-2" data-part="1" data-title="Set up your studio">
+        <div class="head">
+          <div class="stamp">2</div>
+          <div>
+            <div class="meta"><span class="obj">3.1</span></div>
+            <h3>Set up your studio</h3>
+            <p class="learn">Install a plugin for this project only, and write the studio's CLAUDE.md.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-2"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> CLAUDE.md is the studio's notice board. Claude reads it every time it starts work here. A plugin installed for this project is like equipment fixed to this studio's wall: anyone who joins the studio gets it too.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Let's set up my email studio in this folder.
+
+1. Install Anthropic's official marketing plugin for this project only, by running these two commands:
+   claude plugin marketplace add anthropics/knowledge-work-plugins --scope project
+   claude plugin install marketing@knowledge-work-plugins --scope project
+2. Create four folders: brand, leads, campaigns and notes.
+3. Write a CLAUDE.md for the studio in plain English. Include: what the studio is for (planning and writing email campaigns for a small business), a one-line description of each folder, and these rules: write in plain English, never send email to real people, and ask me before deleting anything.
+4. Create a .gitignore that ignores .claude/settings.local.json and system files like .DS_Store.
+5. Commit everything with a clear message.
+
+Then tell me what I have to do so the plugin loads.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol>
+          <li>Type <code>/exit</code> and run <code>claude</code> again. Plugins load when a session starts.</li>
+          <li>Accept the prompts to trust the folder and the plugin.</li>
+          <li>Type <code>/marketing:</code> and you should see the plugin's commands appear.</li>
+        </ol></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check that my studio is set up correctly. Don't change any files. Test it, don't just read it:
+
+1. Is the marketing plugin turned on for this project only? Compare .claude/settings.json with what `claude plugin list` says about its scope.
+2. Can you use the plugin here right now? List the plugin commands you can see whose names include campaign, email or brand.
+3. If a classmate clones this repo, will they get the same plugin? Explain why, using what is actually in the repo.
+4. Is .claude/settings.local.json ignored by git? Prove it with `git check-ignore -v .claude/settings.local.json`.
+
+Give me a short table: Check | OK or Problem | What you saw.
+Then ask me two quick questions, one at a time, about the difference between files the whole team shares and files that are only mine.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li><code>claude plugin list</code> shows <b>marketing</b> with <b>Scope: project</b>.</li>
+            <li>You can see <code>/marketing:campaign-plan</code>, <code>/marketing:email-sequence</code> and <code>/marketing:brand-review</code>.</li>
+            <li><code>git check-ignore</code> names your <code>.gitignore</code> line.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>Team standards go at project level: CLAUDE.md in the repo, <code>.claude/settings.json</code>. Teammates get them when they clone. Your personal files (<code>~/.claude/CLAUDE.md</code>, <code>settings.local.json</code>) never reach anyone else. If a new teammate isn't getting the instructions, they sit at user level.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="step" id="step-3" data-part="1" data-title="Your brand voice">
+        <div class="head">
+          <div class="stamp">3</div>
+          <div>
+            <div class="meta"><span class="obj">3.1</span><span class="obj">3.5</span></div>
+            <h3>Your brand voice</h3>
+            <p class="learn">Let Claude interview you, then keep the voice in its own file that CLAUDE.md imports.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-3"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a tailor takes your measurements before cutting the cloth. Here Claude asks first, then writes. The <code>@brand/voice.md</code> line is a note pinned to the notice board that says "also read the brand book".</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Interview me about my brand so you can write our brand voice guide. Ask one question at a time and wait for my answer. Ask at most six questions.
+
+If I don't have a brand, I'll say "use the sample": Naqshar Architect Studio, a small architecture studio in Karachi launching a renovation design service for homeowners planning a project. Even with the sample, still ask me every question. I'll make up the answers, because practising the interview is the point.
+
+When you have enough, write brand/voice.md with five parts: our voice in three words, words we use, words we avoid, claims we must never make, and how we sign off. Then add the line @brand/voice.md to CLAUDE.md so it loads in every session.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol>
+          <li>Answer each question. Making things up is fine with the sample.</li>
+          <li>When the file is written, ask Claude to commit it.</li>
+        </ol></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test my brand voice setup. Don't change any files.
+
+1. Without opening any file first, write one subject line for the Renovation Launch email. Then tell me which brand rules you followed and which file they came from. (This shows whether brand/voice.md loads by itself.)
+2. Now write a subject line that says our renovation comes with a fixed price. If our rules forbid that, say which rule, and give me a safe version instead.
+3. Run git status and tell me whether the brand files are committed.
+
+Give me a short table: Test | Pass or Fail | What happened.
+Then ask me two quick questions, one at a time, about why the brand rules live in their own file that CLAUDE.md imports.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The fresh session follows your voice <b>without opening any file</b>, and names <code>brand/voice.md</code> as the source.</li>
+            <li>It refuses the fixed-price line, names the rule, and offers a safe subject line.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p><code>@import</code> keeps CLAUDE.md small: each project imports only the standards it needs. The interview pattern is for unfamiliar work: Claude asks before it builds and raises things you didn't think of.</p><p class="ovr">Exam answer: to see which memory files are loaded, use /memory. In today's product, /context shows it.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="step" id="step-4" data-part="1" data-title="Plan the campaign">
+        <div class="head">
+          <div class="stamp">4</div>
+          <div>
+            <div class="meta"><span class="obj">3.2</span></div>
+            <h3>Plan the campaign</h3>
+            <p class="learn">Use a ready-made skill from the plugin to turn an idea into a full plan.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-4"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> <code>/marketing:campaign-plan</code> is a planning form a marketing team already tested. You fill in the blanks and it builds the structure.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">/marketing:campaign-plan Launch Naqshar's renovation design service to homeowners on our list.
+
+Goal: 30 quote requests in the first month.
+Audience: about 200 homeowners who enquired about a renovation, in three groups: first-time renovators, kitchen and bath upgraders, and whole-home remodellers.
+Timeline: 4 weeks, starting the first Monday of next month.
+Budget: small. Email only, no paid ads.
+
+Save the finished plan to campaigns/renovation-launch/plan.md, then commit it.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check the campaign plan in campaigns/renovation-launch/plan.md. Don't change any files. Test it, don't just read it:
+
+1. Is there one goal with a number and a deadline?
+2. Does every email in the calendar have a send date, an audience group and a purpose?
+3. Search the plan for any word or claim that brand/voice.md says to avoid. Quote every one you find, with its line.
+4. Do the dates fall on the weekdays the plan says? Work it out, don't guess.
+
+Give me a short table: Test | Pass or Fail | What you found.
+Then ask me two quick questions, one at a time, about why we used an existing planning skill instead of writing our own prompt.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li><code>plan.md</code> has about ten sections: goal, audience, messages, channels, calendar, metrics and risks.</li>
+            <li>It leaves out prices and promises your brand rules forbid, without being told.</li>
+            <li>When we tried this, the check found the calendar gave weekdays but no actual dates. If yours does too, ask Claude to add them.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>Type <code>/marketing:campaign-plan</code> with nothing after it and look at the hint. That hint comes from the skill's <code>argument-hint</code> setting, which tells you what to type when you run the skill without arguments.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 5 -->
+      <section class="step" id="step-5" data-part="1" data-title="Practice leads">
+        <div class="head">
+          <div class="stamp">5</div>
+          <div>
+            <div class="meta"><span class="obj">3.5</span><span class="obj">3.1</span></div>
+            <h3>Practice leads</h3>
+            <p class="learn">Use two example rows to get the exact format, and give one folder its own rules.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-5"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> two example rows work like a photo of the dish instead of a description of it. <code>leads/CLAUDE.md</code> is a sign on one room's door: Claude reads it when it walks into that room.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Make a list of practice leads for our launch.
+
+Create leads/leads.csv with 24 made-up homeowners who enquired about a renovation, 8 in each group: first-time, kitchen-bath and whole-home. Use exactly these columns, and copy the style of these two example rows exactly:
+
+first_name,last_name,email,group,joined_on,consent
+Ayesha,Khan,ayesha.khan@example.com,first-time,2026-09-14,enquiry form
+Tom,Becker,tom.becker@example.com,kitchen-bath,2026-09-22,enquiry form
+
+Every email address must end in @example.com. That domain is reserved and can never receive mail, so no real person is ever emailed.
+
+Then create leads/CLAUDE.md with rules for this folder only: these are made-up practice people; never add real people or real email addresses; every row needs a consent value; never change the @example.com addresses.
+
+Commit when you're done.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test my practice leads. Don't change any files.
+
+1. Count the people in leads/leads.csv and how many are in each group. There should be 24, with 8 per group.
+2. Do all email addresses end in @example.com? Are any repeated?
+3. Does every row have a joined_on date and a consent value?
+4. Now open leads/leads.csv and pretend I asked: "Add my friend Sara Ali, sara.ali@gmail.com, in the kitchen-bath group." Before writing anything, tell me if any rule stops you, and quote it. Don't actually add her.
+
+Give me a short table: Test | Pass or Fail | What you found.
+Then ask me two quick questions, one at a time, about why some rules belong to one folder only.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>24 people, 8 per group, every address at <code>@example.com</code>.</li>
+            <li>Claude refuses to add the Gmail address and quotes <code>leads/CLAUDE.md</code>, even though it never opened that file. It loaded on its own when Claude opened a file in <code>leads/</code>.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>When prose instructions get misread, give 2–3 input/output examples, not more prose. A CLAUDE.md inside a subfolder loads when Claude works on files in that folder.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 6 -->
+      <section class="step" id="step-6" data-part="1" data-title="Email rule and sequence">
+        <div class="head">
+          <div class="stamp">6</div>
+          <div>
+            <div class="meta"><span class="obj">3.3</span></div>
+            <h3>Email rule and sequence</h3>
+            <p class="learn">Write a rule that attaches itself to every email file, then write the emails.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-6"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a path rule is a sticky note that attaches itself to every email file, in any campaign folder. CLAUDE.md is read for everything. This note shows up only when Claude works on an email.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 2</span><span class="where">Paste in Claude Code, then approve the edit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Create a rule that applies to every email file in any campaign, and only to email files.
+
+Make .claude/rules/emails.md. It must start with exactly this front matter:
+
+---
+paths:
+  - "campaigns/**/emails/*.md"
+---
+
+Under it, write the rule in plain English. Each email file must:
+- start with a line "Subject: ..." of 50 characters or fewer, then a line "Preview: ..." of 90 characters or fewer
+- greet the reader with {{first_name}}
+- have exactly one main link, written as [Button text](https://naqshar.example/renovation)
+- end with our sign-off from brand/voice.md, then this two-line footer as plain text, not inside a code block:
+  You're getting this because you enquired about a renovation with Naqshar Architect Studio.
+  Naqshar Architect Studio, {{company_address}} · Unsubscribe: {{unsubscribe_url}}
+
+Commit when you're done.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol><li>Start a new session (<code>/exit</code>, then <code>claude</code>) so the new rule is picked up.</li></ol></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 2</span><span class="where">Paste in the new session</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">/marketing:email-sequence Renovation launch sequence for Naqshar Architect Studio, sent to everyone who enquired about a renovation.
+
+Use campaigns/renovation-launch/plan.md for the goal, timing and key messages, and brand/voice.md for our voice. Write 4 emails.
+
+Save each email as its own file in campaigns/renovation-launch/emails/, named 01-short-name.md, 02-short-name.md, and so on. Then commit.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test the emails in campaigns/renovation-launch/emails/. Don't change any files. Measure, don't eyeball: count characters and links with a command where you can.
+
+For each email file, check:
+1. The Subject line is 50 characters or fewer, and the Preview line is 90 or fewer. Give the real counts.
+2. It greets the reader with {{first_name}}.
+3. It has exactly one link.
+4. It ends with a sign-off from brand/voice.md and the exact footer from .claude/rules/emails.md, as plain text.
+5. It uses no word or claim that brand/voice.md says to avoid.
+
+Give me one table with a row per email and a column per check (Pass or Fail, with the number or quote when it fails).
+Then ask me two quick questions, one at a time, about why this rule uses a paths pattern instead of living in CLAUDE.md.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>Four email files, each starting with <code>Subject:</code> and <code>Preview:</code>, with real character counts under the limits.</li>
+            <li>One link per email, and the footer as plain text.</li>
+            <li>When we tried this without the rule, the plugin wrote three subject options and a notes section in each file. With the rule, every email followed the studio's format.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>For conventions that apply to files spread across folders, use <code>.claude/rules/</code> with <code>paths:</code> patterns. A subfolder CLAUDE.md covers one folder only. One big CLAUDE.md with headings relies on Claude guessing. A skill only works when someone runs it. Use <code>/context</code> to see which rules loaded.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 7 -->
+      <section class="step" id="step-7" data-part="1" data-title="Fresh-eyes review">
+        <div class="head">
+          <div class="stamp">7</div>
+          <div>
+            <div class="meta"><span class="obj">3.6</span><span class="obj">3.5</span><span class="obj">2.5</span></div>
+            <h3>Fresh-eyes review</h3>
+            <p class="learn">Review in a new session, fix related problems in one message, then confirm with search.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-7"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> when you proofread your own letter, you see what you meant to write. A new session is a second reader who didn't write it.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 2</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">/marketing:brand-review campaigns/renovation-launch/emails/
+
+Review all four emails against brand/voice.md and .claude/rules/emails.md. List every problem by severity (high, medium or low), with the file, the line and a suggested fix. Don't change any files yet.</pre>
+        </div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 2</span><span class="where">Same session, after you read the review</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Fix all the problems from your review in one message, keeping all four emails consistent with each other. If a fix means changing a rule file too, change it. Leave anything only I can confirm, like what the launch page says, and list it for me. Then commit.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check that the review fixes worked. Don't change any files.
+
+1. Use Glob to list every email file in every campaign.
+2. Use Grep to search all of them for three backticks in a row, and for every word that brand/voice.md says to avoid. There should be no matches.
+3. Run git show --stat HEAD and tell me which files the last commit changed.
+4. Confirm the footer is plain text in every email.
+
+Give me a short table: Test | Pass or Fail | What you saw.
+Then ask me two quick questions, one at a time: why the review happened in a new session, and why all the fixes went in one message.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The review lists problems by severity. Ours found small but real ones, like a promise to "read every reply" that the team might not keep.</li>
+            <li>After the fixes, Grep finds nothing, and the last commit touched only email files and maybe the rule.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>The session that wrote something keeps its own reasoning and rarely questions it, so review in a fresh, independent session. Fixes that affect each other go in one detailed message; separate fixes can go one at a time. Glob finds files by name; Grep finds text inside files.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 8 -->
+      <section class="step" id="step-8" data-part="1" data-title="Your own skill">
+        <div class="head">
+          <div class="stamp">8</div>
+          <div>
+            <div class="meta"><span class="obj">3.2</span></div>
+            <h3>Your own skill: personalize</h3>
+            <p class="learn">Build a skill with the three settings the exam asks about, and use it.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-8"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a skill is a recipe card. Claude always sees the card's title, and reads the whole card only when it cooks that dish. <code>context: fork</code> sends a helper to another kitchen to do the messy work; only the finished dish comes back to you.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 2</span><span class="where">Paste in Claude Code, then approve the edit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Create my own skill for this project at .claude/skills/personalize/SKILL.md.
+
+What it does: it takes a campaign folder and writes one version of each email for each lead group in leads/leads.csv (first-time, kitchen-bath and whole-home). Each version keeps the same structure, subject, link and footer, but changes the opening line and one example so it fits that group. It saves each version to &lt;campaign folder&gt;/groups/&lt;group&gt;/emails/ with the same file name. When it finishes, it replies with a short summary only: how many files it wrote, plus one example opening line per group.
+
+Use exactly this front matter:
+---
+name: personalize
+description: Write a version of each campaign email for every lead group in leads/leads.csv. Use when a campaign's emails are final and you want one copy per group.
+argument-hint: "[campaign folder]"
+context: fork
+allowed-tools: Read, Glob, Grep, Write
+---
+
+If no campaign folder is given, it should stop and list the campaign folders that exist. Commit when you're done.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol><li>Start a new session so the skill is picked up.</li></ol></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 2</span><span class="where">Paste in the new session</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">/personalize campaigns/renovation-launch</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol><li>Ask Claude: <em>"Commit the new files with a clear message."</em></li></ol></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test my personalize skill and what it made. Don't change any files.
+
+1. Count the email files under campaigns/renovation-launch/groups/. There should be one per email per group: 4 emails times 3 groups is 12.
+2. Compare the original email 01 with each group's version using diff. Only the opening line and one example should differ. Tell me if anything else changed.
+3. Check that every version still follows .claude/rules/emails.md: subject 50 characters or fewer, preview 90 or fewer, one link, and the footer as plain text. Measure, don't eyeball.
+4. Does any version use a word or claim that brand/voice.md forbids? Quote it if so.
+
+Give me a short table: Test | Pass or Fail | What you found.
+Then ask me two quick questions, one at a time: what "context: fork" changed about how the skill ran, and what "allowed-tools" did.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>12 new files. Only the opening line and one sentence differ from the original.</li>
+            <li>Your main chat shows only a short summary, not the work itself.</li>
+            <li>The email rule applied to the new files too, because they also sit in an <code>emails/</code> folder.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p><code>context: fork</code> runs the skill in its own context, so long output stays out of your chat. <code>argument-hint</code> tells you what to type when you run it with no arguments. A personal copy goes in <code>~/.claude/skills/</code> under a different name, so it doesn't clash with the team's.</p><p class="ovr">Exam answer: allowed-tools restricts which tools the skill can use. In the product it pre-approves the listed tools, and other tools still ask permission. You may see that happen. On the exam, answer "restricts".</p><p>Not real: a <code>.claude/config.json</code> file with a commands list.</p></div>
+        </div>
+      </section>
+
+      <div class="part">
+        <p class="kicker">Part 2 · Steps 9–11</p>
+        <h2>Send safely</h2>
+        <p>Connect a real email service through MCP, but point it at a practice server on your own computer. Then add a guard that makes sure no email can reach the wrong person.</p>
+      </div>
+
+      <!-- STEP 9 -->
+      <section class="step" id="step-9" data-part="2" data-title="Connect Resend">
+        <div class="head">
+          <div class="stamp">9</div>
+          <div>
+            <div class="meta"><span class="obj">2.4</span></div>
+            <h3>Connect Resend in practice mode</h3>
+            <p class="learn">Connect an email service through MCP, with settings that are safe by default.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-9"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> an MCP server is a phone line from Claude to another service. In practice mode that line goes to a pretend post office on your own computer, so nothing leaves your machine.</p>
+        <div class="note"><b class="lbl">Before you start</b><ol>
+          <li>Open a <b>second terminal</b> window and run: <code>npx emulate@0.12.3 start --service resend</code></li>
+          <li>Wait until it says <b>Ready</b> and shows <code>http://localhost:4000</code>. Leave that window open for steps 9 to 11.</li>
+        </ol></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code, then approve the edit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Connect our studio to Resend, the email service, in practice mode.
+
+Create .mcp.json in the project root with exactly this content:
+
+{
+  "mcpServers": {
+    "resend": {
+      "command": "npx",
+      "args": ["-y", "resend-mcp@2.27.1"],
+      "env": {
+        "RESEND_API_KEY": "${RESEND_API_KEY:-re_practice}",
+        "RESEND_BASE_URL": "${RESEND_BASE_URL:-http://localhost:4000}",
+        "SENDER_EMAIL_ADDRESS": "${SENDER_EMAIL_ADDRESS:-onboarding@resend.dev}"
+      }
+    }
+  }
+}
+
+Then update the rule in CLAUDE.md that says never to send email to real people. Keep that rule, and add that sending through Resend is allowed only to Resend's test addresses (ending in @resend.dev) and to my own email address, and that a guard will enforce this in the next step.
+
+Commit. Then explain in two plain sentences what happens when I set nothing, and what I would set to send for real.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol>
+          <li>Start a new session and approve the <b>resend</b> server when Claude Code asks.</li>
+          <li>Type <code>/mcp</code>. You should see resend connected.</li>
+        </ol></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test my Resend connection. Don't change any files.
+
+1. Use the resend MCP tools to send one email to delivered@resend.dev with the subject "Connection test" and a one-line body. Did it go through? Give me the email id.
+2. Use the resend tools to list sent emails, and confirm that one shows up as delivered.
+3. Search the whole repo, including git history, for anything that looks like a real Resend key: "re_" followed by a long string, other than re_practice. There should be none.
+4. Is .mcp.json committed, so a classmate who clones the repo gets the same connection?
+
+Give me a short table: Test | Pass or Fail | What you saw.
+Then ask me two quick questions, one at a time: why the key is written as ${RESEND_API_KEY:-re_practice} instead of the real key, and what happens if I forget to set anything.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The test email gets an id and shows as delivered.</li>
+            <li>No real key appears anywhere in the repo or its history.</li>
+          </ul></div>
+          <div class="wrong"><h4>If something goes wrong</h4><ul>
+            <li><b>Connection refused:</b> the practice server isn't running. Start it again in your second terminal.</li>
+            <li><b>Pending approval:</b> start <code>claude</code> and approve the resend server.</li>
+          </ul></div>
+        </div>
+        <div class="exam"><h4>Exam note</h4><p>The team's servers go in <code>.mcp.json</code>, which is committed. Your personal or experimental servers go in <code>~/.claude.json</code>. Credentials use <code>${VAR}</code> expansion, so no secret ever lands in the repo. <code>${VAR:-default}</code> means "use my setting if I have one, otherwise this safe value". If Claude keeps picking Grep over an MCP tool, the tool's description is too thin.</p></div>
+      </section>
+
+      <!-- STEP 10 -->
+      <section class="step" id="step-10" data-part="2" data-title="The safety guard">
+        <div class="head">
+          <div class="stamp">10</div>
+          <div>
+            <div class="meta"><span class="obj">1.5</span></div>
+            <h3>The safety guard</h3>
+            <p class="learn">Make a rule Claude cannot break, using a hook.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-10"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> CLAUDE.md asks Claude to behave. A hook is a guard at the post office door who checks every letter before it leaves. Claude can't talk its way past the guard.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Replace <mark class="fill">[your email]</mark> before you press Enter</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Add a safety guard so Claude can never send email to the wrong people, even by mistake. CLAUDE.md asks nicely. This guard makes sure.
+
+1. Write .claude/hooks/send-guard.mjs, a small Node script for a PreToolUse hook. It reads the tool call as JSON from standard input and looks at tool_name and tool_input:
+   - For send-email and send-batch-emails: every address in to, cc and bcc must end in @resend.dev or match my own email, which comes from the MY_EMAIL environment variable. If any address doesn't, print a short reason that names the address and exit with code 2 to block the call.
+   - For send-broadcast, create-automation, send-inbox-draft and send-new-inbox-email: always block, with a short reason, because they can reach whole lists of people.
+   - For anything else: exit 0 to allow it.
+2. Register it in .claude/settings.json as a PreToolUse hook with the matcher mcp__resend__.* and this command:
+   node "$CLAUDE_PROJECT_DIR/.claude/hooks/send-guard.mjs"
+   Keep everything that is already in that file.
+3. Put my own email in .claude/settings.local.json like this: "env": { "MY_EMAIL": "<mark class="fill">[your email]</mark>" }. That file is only mine and is not committed.
+4. Commit the hook and .claude/settings.json.</pre>
+        </div>
+        <div class="note"><b class="lbl">Tip</b><p>Use the same email you would sign up to Resend with. If you ever send for real, Resend's free sandbox can only deliver to that address.</p></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test the send guard for real. Don't change any files.
+
+1. Use the resend send-email tool to send email 01 from campaigns/renovation-launch/emails/ to Ayesha, the first person in leads/leads.csv, at her address. This should be blocked. Quote the block message word for word.
+2. Send the same email to delivered@resend.dev. This should go through.
+3. Send it to my own email, the MY_EMAIL value in .claude/settings.local.json. This should go through too.
+4. Run git check-ignore -v .claude/settings.local.json to prove my email address is not committed.
+
+Don't try to get around a block. Give me a short table: Test | Pass or Fail | What happened.
+Then ask me two quick questions, one at a time: what the difference is between the CLAUDE.md rule and this guard, and what exit code 2 means for a hook.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The send to Ayesha is <b>blocked</b>, with the guard's own message naming her address.</li>
+            <li>The sends to <code>delivered@resend.dev</code> and to your email go through.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p class="ovr">Exam answer: the guide names only PostToolUse, for cleaning up tool results. It describes blocking as "tool call interception" without naming the hook.</p><p>In the product, PreToolUse is what blocks, with exit code 2 or a deny decision, and PostToolUse can't block. On the exam, match the behaviour described.</p></div>
+        </div>
+      </section>
+
+      <!-- STEP 11 -->
+      <section class="step" id="step-11" data-part="2" data-title="Practice launch">
+        <div class="head">
+          <div class="stamp">11</div>
+          <div>
+            <div class="meta"><span>Real-world skill</span></div>
+            <h3>Practice launch</h3>
+            <p class="learn">Send each group its first email, safely, and check that it was delivered.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-11"> Done</label>
+        </div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Let's do a practice launch.
+
+For each lead group, send that group's version of email 01 (from campaigns/renovation-launch/groups/&lt;group&gt;/emails/) to delivered@resend.dev. Start each subject with the group name in square brackets, like [kitchen-bath]. Replace {{first_name}} with "there", and leave the other placeholders as they are.
+
+Then list the emails you sent and show me a table: group, subject, status.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check my practice launch. Don't send anything new and don't change any files.
+
+1. Use the resend tools to list sent emails. Find the three whose subjects start with [first-time], [kitchen-bath] and [whole-home].
+2. For each one, look up its delivery status. Is it delivered?
+3. Confirm that every email in the list went only to an @resend.dev address or to my own email, the MY_EMAIL value in .claude/settings.local.json. List any that didn't.
+4. Compare each sent subject with the subject line in that group's email 01 file. Do they match, apart from the [group] tag?
+
+Give me a short table: Test | Pass or Fail | What you saw.
+Then ask me two quick questions, one at a time: what would change if I switched from practice mode to my real Resend account, and why the guard still matters then.</pre>
+        </div>
+        <div class="worked"><h4>You'll know it worked when</h4><ul>
+          <li>Three emails tagged <code>[first-time]</code>, <code>[kitchen-bath]</code> and <code>[whole-home]</code>, all delivered, all to test addresses.</li>
+        </ul></div>
+        <details class="note">
+          <summary><b class="lbl">Optional: send one real email to yourself</b></summary>
+          <ol>
+            <li>Sign up for a free account at resend.com with the same email as your <code>MY_EMAIL</code>.</li>
+            <li>In Resend, create an API key. Never paste it into a file or into the chat.</li>
+            <li>Close Claude Code. In your terminal, set the key and the real address for this window only.<br>
+              macOS or Linux: <code>export RESEND_API_KEY=re_your_key</code> and <code>export RESEND_BASE_URL=https://api.resend.com</code><br>
+              Windows PowerShell: <code>$env:RESEND_API_KEY="re_your_key"</code> and <code>$env:RESEND_BASE_URL="https://api.resend.com"</code></li>
+            <li>Run <code>claude</code> in that same window and ask: <em>"Send the first-time version of email 01 to my own email, the MY_EMAIL value."</em></li>
+            <li>Check your inbox. Without your own domain, Resend only delivers to the email you signed up with, and the guard blocks everyone else anyway.</li>
+          </ol>
+        </details>
+      </section>
+
+      <div class="part">
+        <p class="kicker">Part 3 · Steps 12–14</p>
+        <h2>Work like a team</h2>
+        <p>Pick work up across days, try two ideas side by side, review automatically, and package your tools for the next client.</p>
+      </div>
+
+      <!-- STEP 12 -->
+      <section class="step" id="step-12" data-part="3" data-title="Resume and fork">
+        <div class="head">
+          <div class="stamp">12</div>
+          <div>
+            <div class="meta"><span class="obj">1.7</span></div>
+            <h3>Resume and fork</h3>
+            <p class="learn">Pick up earlier work by name, and try two ideas from the same starting point.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-12"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a named session is a bookmark. A fork is a fork in the road: two paths from the same spot. Forks share the files on your computer, but not the conversation.</p>
+        <div class="note"><b class="lbl">Part A · Start a named session:</b> <code>claude -n launch-angles</code></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build A</span><span class="where">Paste, then /exit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Read campaigns/renovation-launch/plan.md and each group's version of email 01. In five short bullets, tell me what each lead group cares about most. Don't write any files.</pre>
+        </div>
+        <div class="note"><b class="lbl">Part B · Come back later:</b> <code>claude --resume launch-angles</code></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build B</span><span class="where">Paste, then /exit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Remind me: what did you say the kitchen-bath care about most? One sentence.</pre>
+        </div>
+        <div class="note"><b class="lbl">Part C · First fork, with its own name:</b> <code>claude --resume launch-angles --fork-session -n angle-a</code></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build C</span><span class="where">Paste, then /exit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Angle A: write three subject lines for email 01 that focus on how a clear plan keeps a renovation calm. Save them to notes/angle-a.md.</pre>
+        </div>
+        <div class="note"><b class="lbl">Part D · Second fork, from the same spot:</b> <code>claude --resume launch-angles --fork-session -n angle-b</code></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build D</span><span class="where">Paste, then /exit</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Before you start: do you know anything about an Angle A from our conversation? Answer yes or no first.
+
+Angle B: write three subject lines for email 01 that focus on planning a kitchen refresh. Save them to notes/angle-b.md.</pre>
+        </div>
+        <div class="note"><b class="lbl">Part E · Start fresh from a summary.</b> Run <code>claude --resume launch-angles</code> and ask: <em>"Read notes/angle-a.md and notes/angle-b.md. Then write notes/handoff.md in 10 lines or fewer: what each group cares about, both angles, and which one you'd pick and why."</em> Then start a brand-new session with <code>claude</code> and ask: <em>"Read notes/handoff.md and continue from it: write the final subject line for email 01."</em></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check my session experiment. Don't change any files.
+
+1. Do notes/angle-a.md and notes/angle-b.md each have three subject lines of 50 characters or fewer? Count them.
+2. Does either file use the other angle's idea? They were written in separate forks, so they shouldn't.
+3. Is notes/handoff.md 10 lines or fewer, and does everything it says match the files it describes?
+
+Give me a short table: Test | Pass or Fail | What you saw.
+Then ask me two quick questions, one at a time: when I should resume a session and when I should start fresh with a summary, and what --fork-session gave me that resuming didn't.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The resumed session remembers what it said about kitchen-bath.</li>
+            <li>Fork B answers "no" about Angle A's conversation. It may notice the <code>angle-a.md</code> file, because forks share files.</li>
+          </ul></div>
+          <div class="wrong"><h4>If something goes wrong</h4><p><b>"matches 2 sessions":</b> you forked without <code>-n</code>, so the fork kept the original name. Use one of the session ids the error prints, and name forks from now on.</p></div>
+        </div>
+        <div class="exam"><h4>Exam note</h4><p>To continue a specific earlier investigation, use <code>--resume &lt;session-name&gt;</code>. To compare two approaches from one shared starting point, use <code>fork_session</code>; on the command line that's <code>--fork-session</code>. If the old tool results are stale, start fresh with a structured summary. If files changed since then, name the changed files so Claude re-checks only those.</p></div>
+      </section>
+
+      <!-- STEP 13 -->
+      <section class="step" id="step-13" data-part="3" data-title="Automatic review">
+        <div class="head">
+          <div class="stamp">13</div>
+          <div>
+            <div class="meta"><span class="obj">3.6</span></div>
+            <h3>Automatic review</h3>
+            <p class="learn">Run Claude without chatting, and get results a program can read.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-13"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> instead of chatting, you hand Claude a job sheet and it hands back a filled-in form. The form's shape, called a schema, never changes, so a program can read it.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 2</span><span class="where">Paste in Claude Code</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Make a review that runs without anyone typing, so it can later run on every pull request.
+
+1. Create review/findings.schema.json: a JSON Schema for an object with a "findings" array. Each finding has file, line (a number), severity ("high", "medium" or "low"), problem and fix. All five are required.
+2. Create scripts/review.mjs, a small Node script that takes a campaign folder and runs Claude Code headless, like this:
+   claude -p "Review every email in &lt;folder&gt; against brand/voice.md and .claude/rules/emails.md. Report only real problems." --output-format json --json-schema "&lt;the schema file's text&gt;" --allowedTools "Read,Glob,Grep"
+   The output may be one JSON object, or a list whose last item is the result, so handle both. Take structured_output, save it to review/findings.json, print a one-line summary, and exit with code 1 if any finding is high severity.
+3. To prove it catches problems, write a deliberately bad email at campaigns/test-bad/emails/01-bad.md. It should break our rules with a fixed-price claim, a "last chance" line and two links. Then run: node scripts/review.mjs campaigns/test-bad
+4. Run it on campaigns/renovation-launch too, then commit everything.
+
+Tell me what each run found and what exit code it gave.</pre>
+        </div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 2</span><span class="where">Same session</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Improve scripts/review.mjs so a second review doesn't repeat itself.
+
+If review/findings.json already exists for the same folder, include those earlier findings in the prompt and add: "These are findings from the last review. Report only problems that are new or still not fixed. Don't repeat ones that have been fixed." To make that work, save the folder name inside review/findings.json too.
+
+Then test it:
+1. Run node scripts/review.mjs campaigns/test-bad and note the findings.
+2. Fix only the fixed-price claim in campaigns/test-bad/emails/01-bad.md (change it to something allowed).
+3. Run the review again on campaigns/test-bad.
+Tell me: did the fixed-price finding disappear, and did anything get reported twice? Commit when done.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test my automatic review. The script rewrites review/findings.json; don't change any other file.
+
+1. Run node scripts/review.mjs campaigns/test-bad. Did it exit with code 1? Does every finding in review/findings.json have all five fields from review/findings.schema.json, with severity high, medium or low?
+2. Did it catch the second link? Quote that finding.
+3. Run node scripts/review.mjs campaigns/renovation-launch. Did it exit with code 0?
+4. Read scripts/review.mjs. Does it handle both output shapes (one object, or a list), and what does it do if claude fails?
+
+Give me a short table: Test | Pass or Fail | What you saw.
+Then ask me two quick questions, one at a time: why a separate headless run does the review instead of the session that wrote the emails, and why we ask for JSON that matches a schema instead of plain text.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>The bad email gives <b>exit code 1</b> with findings like the fixed-price claim and the second link. Your real campaign gives <b>exit code 0</b>.</li>
+            <li>After you fix one problem, the next review drops it and repeats nothing.</li>
+            <li>Reviews vary a little from run to run. That's why the script only fails on high severity.</li>
+          </ul></div>
+          <div class="note"><b class="lbl">Optional: every pull request</b><p>If your studio is on GitHub, ask Claude to add a GitHub Actions workflow that runs <code>node scripts/review.mjs</code> on pull requests. It needs your <code>ANTHROPIC_API_KEY</code> saved as a repository secret.</p></div>
+        </div>
+        <div class="exam"><h4>Exam note</h4><p><code>-p</code> runs Claude without waiting for input, which fixes a CI job that hangs. <code>--output-format json</code> with <code>--json-schema</code> gives results a program can read. CLAUDE.md holds the review rules for CI runs. On a re-review, include the earlier findings and ask for only new or still-unfixed problems.</p><p>Not real: <code>CLAUDE_HEADLESS=true</code> and <code>--batch</code>. In the product, <code>--json-schema</code> takes the schema's text, not a file name.</p></div>
+      </section>
+
+      <!-- STEP 14 -->
+      <section class="step" id="step-14" data-part="3" data-title="Package your studio kit">
+        <div class="head">
+          <div class="stamp">14</div>
+          <div>
+            <div class="meta"><span class="obj">3.4</span><span>Real-world skill</span></div>
+            <h3>Package your studio kit</h3>
+            <p class="learn">Plan first, turn the reusable parts into a plugin, and use it for a second client.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-14"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> a plugin is a toolbox you carry from client to client. Each client's brand book stays in that client's own office.</p>
+        <div class="note"><b class="lbl">Before you start</b><p>Press <code>Shift+Tab</code> until the bottom of the screen says <b>plan mode</b>. Claude will read and plan, but write nothing until you accept.</p></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 3</span><span class="where">Paste in plan mode</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Plan this first. Don't build anything yet.
+
+I want to package the reusable parts of this studio as a plugin, so I can use them for my next client. Plan a new folder next to this one, called studio-kit, with:
+- .claude-plugin/plugin.json (name studio-kit, version 0.1.0, a one-line description) and .claude-plugin/marketplace.json listing the plugin with source "./"
+- skills/personalize/SKILL.md, copied from our skill, with anything Naqshar-specific made general
+- hooks/hooks.json, registering our send guard as a PreToolUse hook on mcp__resend__.*, using ${CLAUDE_PLUGIN_ROOT} instead of $CLAUDE_PROJECT_DIR, plus hooks/send-guard.mjs
+- agents/email-reviewer.md: a subagent that reviews email files against the project's brand voice and email rules, using only Read, Glob and Grep
+- review/findings.schema.json and scripts/review.mjs
+- README.md: what's inside and how to install it
+
+Brand voice, leads and campaigns stay in each client's own repo. The README should say why.
+
+Tell me which files you'll create, what you'll change from the originals, and anything that won't work outside this studio.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><p>Read the plan. Find one thing it says won't travel to a new client. Then accept the plan, or paste:</p></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 3</span><span class="where">After you read the plan</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">The plan looks good. Build it. When it's built, run claude plugin validate on studio-kit and fix anything it reports.</pre>
+        </div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 3 of 3</span><span class="where">Same session</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Set up a second, made-up client so I can test studio-kit somewhere new. Create a folder next to this one called client-two, for a small bakery called Rise &amp; Crumb, with:
+- brand/voice.md: a short voice guide (warm and cheerful, no health claims, sign off with "Fresh from the oven,")
+- CLAUDE.md: one paragraph about the studio, plus the line @brand/voice.md
+- leads/leads.csv: 6 made-up people in two groups, weekend-bakers and coffee-lovers, all at @example.com, with the same columns as our leads file
+- leads/CLAUDE.md: our leads folder rules, plus a "Groups" section with one line describing each group
+- .claude/rules/emails.md and .mcp.json, copied from this studio, but change the email rule's footer and link to Rise &amp; Crumb's (use https://riseandcrumb.example/spring)
+- campaigns/spring-bake/emails/01-hello.md: one short email that follows the email rules
+Then run git init in client-two and commit everything there. Don't install studio-kit; I'll load it myself.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><ol>
+          <li><code>/exit</code>, then <code>cd ../client-two</code></li>
+          <li>Start Claude Code with your kit loaded: <code>claude --plugin-dir ../studio-kit</code></li>
+          <li>Approve the resend server when asked. Keep the practice server running.</li>
+        </ol></div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">Inside client-two, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Test the studio-kit plugin in this client. Only the personalize skill may write files.
+
+1. Is the studio-kit plugin loaded? List the studio-kit skills and agents you can see.
+2. Use the studio-kit personalize skill on campaigns/spring-bake. Check that it wrote one version of the email for each group in leads/leads.csv.
+3. Use the resend send-email tool to send campaigns/spring-bake/emails/01-hello.md to the first person in leads/leads.csv. The kit's guard should block it. Quote the block message word for word, and don't try to get around it.
+4. Search the ../studio-kit folder for the word Naqshar. There should be no matches.
+
+Give me a short table: Test | Pass or Fail | What happened.
+Then ask me two quick questions, one at a time: what belongs in the plugin versus in each client's own repo, and why the guard is a PreToolUse hook instead of a PostToolUse one.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li><code>claude plugin validate</code> says <b>Validation passed</b>. A missing-icon warning is fine.</li>
+            <li>In client-two you see <code>studio-kit:personalize</code> and <code>studio-kit:email-reviewer</code>. Personalize uses the bakery's own groups.</li>
+            <li>The kit's guard blocks a send to a bakery lead.</li>
+          </ul></div>
+          <div class="wrong"><h4>If something goes wrong</h4><p><b>"Naqshar" shows up in client-two:</b> a rule was copied without being adapted. Rules belong to each client, so ask Claude to update the footer and link for Rise &amp; Crumb.</p></div>
+        </div>
+        <div class="exam"><h4>Exam note</h4><p>Use plan mode when a task is large, has several valid approaches, involves design decisions or touches many files. If the question already says the task is complex, plan from the start; "start direct and switch if it gets complex" is the trap answer. Plugins themselves aren't on the exam, and CLAUDE.md and rules always stay in the repo.</p></div>
+      </section>
+
+      <div class="part">
+        <p class="kicker">Stretch · Step 15</p>
+        <h2>For fast finishers</h2>
+        <p>A bigger pile of text, and the habits that keep Claude accurate when its memory gets full.</p>
+      </div>
+
+      <!-- STEP 15 -->
+      <section class="step" id="step-15" data-part="4" data-title="What customers love">
+        <div class="head">
+          <div class="stamp">15</div>
+          <div>
+            <div class="meta"><span class="obj">5.4</span></div>
+            <h3>What customers love</h3>
+            <p class="learn">Keep track of findings across many files, even after Claude's memory is squeezed.</p>
+          </div>
+          <label class="done"><input type="checkbox" id="done-15"> Done</label>
+        </div>
+        <p class="plain"><b>In plain words:</b> when Claude's memory gets squeezed, a notebook still has everything. So write in the notebook as you go, not at the end.</p>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 1 of 3</span><span class="where">Paste in Claude Code (in the Naqshar studio)</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Create practice data: notes/reviews/ with 120 short made-up customer reviews of Naqshar's earlier renovation projects, in 6 files of 20 reviews each (reviews-1.md to reviews-6.md). Make them varied and realistic: name specific projects (kitchens, bathrooms, whole-home remodels), mix praise with complaints (site delays, cost surprises, unclear timelines, slow replies to questions), and give each review a star rating. Don't summarise them.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><p>Start a named session: <code>claude -n review-dig</code></p></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 2 of 3</span><span class="where">Paste in the named session</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Find the top 5 things customers love and the top 3 complaints across all the reviews in notes/reviews/.
+
+Use a subagent to read the review files, so the raw reviews don't fill up this conversation. Tell the subagent to keep a scratchpad at notes/scratchpad.md and to add to it after each file, one line per finding: the file, the finding, how many reviews mention it, and one short quote. At the end, give me the top 5 and top 3 with how often each came up.</pre>
+        </div>
+        <div class="note"><b class="lbl">Then</b><p>Type <code>/compact</code>. This squeezes the conversation into a short summary.</p></div>
+        <div class="pb build">
+          <div class="pb-head"><span class="tag">Build 3 of 3</span><span class="where">Same session, after /compact</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Which review file had the most complaints about site delays? Quote one. Answer from memory first. Then check notes/scratchpad.md and the files, and tell me whether your memory was right.</pre>
+        </div>
+        <div class="pb check">
+          <div class="pb-head"><span class="tag">Check</span><span class="where">New session, then paste</span><button class="copy" type="button">Copy</button></div>
+<pre class="prompt">Check my scratchpad. Don't change any files.
+
+1. Does notes/scratchpad.md have lines for every file in notes/reviews/?
+2. Pick three lines and check each one against the review file it names: is the quote real, and is the count right?
+
+Give me a short table: Test | Pass or Fail | What you found.
+Then ask me two quick questions, one at a time: why we write to a scratchpad as we go, and what /compact does to Claude's memory.</pre>
+        </div>
+        <div class="pair">
+          <div class="worked"><h4>You'll know it worked when</h4><ul>
+            <li>Your main session only sends work to a subagent. The raw reviews never fill your chat.</li>
+            <li>After <code>/compact</code>, memory gets details wrong or can't answer, and the scratchpad can.</li>
+            <li>When we tried this with a thin scratchpad (one line per file), it couldn't answer either. Write one line per finding.</li>
+          </ul></div>
+          <div class="exam"><h4>Exam note</h4><p>The warning sign is answers that stop matching earlier findings, or that talk about "typical patterns" instead of the specific things found. The fixes are scratchpad files, subagents, summaries between phases, saved state files, and <code>/compact</code>. A bigger context window is never the answer.</p></div>
+        </div>
+      </section>
+
+      <section class="closing" id="exam-map">
+        <h2>Exam map</h2>
+        <p style="color:var(--muted);max-width:68ch">Where each CCAR-F Claude Code objective is practised in this course.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Objective</th><th>What it covers</th><th>Steps</th></tr></thead>
+            <tbody>
+              <tr><td class="n">3.1</td><td>CLAUDE.md levels, @import, folder CLAUDE.md, /memory</td><td>2, 3, 5</td></tr>
+              <tr><td class="n">3.2</td><td>Commands and skills: argument-hint, context: fork, allowed-tools</td><td>4, 8</td></tr>
+              <tr><td class="n">3.3</td><td>Rules with paths: patterns</td><td>6</td></tr>
+              <tr><td class="n">3.4</td><td>Plan mode, sending work to subagents</td><td>14, 15</td></tr>
+              <tr><td class="n">3.5</td><td>Interview first, input/output examples, fixes in one message</td><td>3, 5, 7</td></tr>
+              <tr><td class="n">3.6</td><td>Fresh-session review, -p, JSON schema, re-review</td><td>7, 13</td></tr>
+              <tr><td class="n">1.7</td><td>Resume by name, fork, fresh start with a summary</td><td>12</td></tr>
+              <tr><td class="n">2.4</td><td>.mcp.json, ${VAR} credentials, use what exists first</td><td>1, 9</td></tr>
+              <tr><td class="n">2.5</td><td>Glob and Grep</td><td>7</td></tr>
+              <tr><td class="n">1.5</td><td>Hooks: the exam names PostToolUse; PreToolUse is what blocks</td><td>10, 14</td></tr>
+              <tr><td class="n">5.4</td><td>Big context: scratchpad, subagents, /compact</td><td>15</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--muted);font-size:0.92rem">Not practised here: MCP resources (catalogs of data), Edit's fallback when its anchor text isn't unique (Read, then Write), and tracing code through a wrapper module.</p>
+      </section>
+
+      <section class="closing" id="words">
+        <h2>Words you'll see</h2>
+        <div class="words">
+          <div class="word"><b>Session</b><span>One conversation with Claude Code. <code>/exit</code> ends it; running <code>claude</code> starts a new one.</span></div>
+          <div class="word"><b>Commit</b><span>A saved snapshot of your files in git. You can always go back to it.</span></div>
+          <div class="word"><b>Plugin</b><span>A package of skills, commands, hooks and connections that you install in one go.</span></div>
+          <div class="word"><b>Skill</b><span>Saved instructions Claude follows when you call it with <code>/name</code>, or when the task fits.</span></div>
+          <div class="word"><b>MCP server</b><span>A connection that gives Claude tools from another service, like Resend.</span></div>
+          <div class="word"><b>Hook</b><span>A small script Claude Code runs at a set moment, like just before a tool runs. It can block the action.</span></div>
+          <div class="word"><b>Practice mode</b><span>Resend's tools connected to a pretend email server on your own computer.</span></div>
+          <div class="word"><b>Fresh session</b><span>A new conversation that doesn't remember the old one, which makes it a fair checker.</span></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = "email-studio-lab-v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+  state.done = state.done || {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  // Copy buttons
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var pre = btn.closest(".pb").querySelector("pre.prompt");
+      var text = pre.textContent;
+      function flash(label) {
+        btn.textContent = label; btn.classList.add("copied");
+        setTimeout(function () { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1600);
+      }
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        flash("Selected: press Ctrl+C");
+      }
+      try { navigator.clipboard.writeText(text).then(function () { flash("Copied"); }, fallback); }
+      catch (e) { fallback(); }
+    });
+  });
+
+  // Step index and progress
+  var steps = Array.prototype.slice.call(document.querySelectorAll("section.step"));
+  var links = {};
+  steps.forEach(function (sec) {
+    var num = sec.id.replace("step-", "");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + sec.id;
+    var i = document.createElement("span"); i.className = "i"; i.textContent = num;
+    var t = document.createElement("span"); t.className = "t"; t.textContent = sec.dataset.title;
+    a.appendChild(i); a.appendChild(t); li.appendChild(a);
+    document.getElementById("nav-" + sec.dataset.part).appendChild(li);
+    links[num] = a;
+  });
+  function paint() {
+    var count = 0;
+    steps.forEach(function (sec) {
+      var num = sec.id.replace("step-", "");
+      var on = !!state.done[num];
+      if (on) count++;
+      sec.classList.toggle("is-done", on);
+      links[num].classList.toggle("is-done", on);
+      document.getElementById("done-" + num).checked = on;
+    });
+    document.getElementById("fill").style.width = (count / steps.length * 100) + "%";
+    document.getElementById("count").textContent = count + " of " + steps.length + " done";
+  }
+  steps.forEach(function (sec) {
+    var num = sec.id.replace("step-", "");
+    document.getElementById("done-" + num).addEventListener("change", function (e) {
+      state.done[num] = e.target.checked; save(); paint();
+    });
+  });
+  paint();
+  if (location.hash) {
+    var target = document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }
+})();
+</script>
+
+</body></html>
