@@ -4,6 +4,8 @@ A practice studio for planning, writing, personalizing, reviewing and (safely) s
 
 The sample brand is **Naqshar Architect Studio**, a small architecture studio launching a renovation design service for homeowners. All customers in this repo are made-up practice people. **No real email is ever sent.**
 
+> **Practice project, not affiliated with Naqshar.** This is a learning exercise. The studio name, website links and brand claims in `brand/voice.md` are used only as sample material. Nothing here is written, approved or endorsed by Naqshar Architect Studio, and none of the customers, reviews or campaign emails are real. Don't send these emails to real people.
+
 ## What is in the repo
 
 ```
