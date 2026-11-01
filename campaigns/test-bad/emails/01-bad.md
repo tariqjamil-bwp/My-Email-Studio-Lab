@@ -1,9 +1,9 @@
-Subject: Last chance: fixed price renovations from PKR 500,000
+Subject: Last chance: renovation design for your home
 Preview: Book now.
 
 Hi there,
 
-Last chance! Our fixed price renovation is the best in town. Sign up today.
+Last chance! Our renovation design is the best in town. Sign up today.
 
 [See the offer](https://naqshar.com/residential/)
 [Book now](https://naqshar.com/contact/)

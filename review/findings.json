@@ -1,25 +1,54 @@
 {
+  "folder": "campaigns/test-bad",
   "findings": [
     {
-      "file": "campaigns/renovation-launch/emails/03-your-questions-answered.md",
-      "line": 18,
-      "severity": "medium",
-      "problem": "Email 03 hedges on single-room work ('Ask us about a single room, and we'll tell you what we can do'; design work 'covers whole-home remodels and interior design'), but email 01 promises renovations 'from a single room to a whole-home remodel'. The kitchen-bath versions have the same conflict: 01 promises 'a kitchen or bathroom update' while 03 hedges.",
-      "fix": "Confirm what the studio takes on, then make emails 01 and 03 agree in the main and kitchen-bath versions. If single-room work is not confirmed, soften email 01."
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 6,
+      "severity": "high",
+      "problem": "\"best in town\" is on the avoided-words list in voice.md. \"Last chance!\" and \"Sign up today\" are also false urgency and salesy, against the warm, plain-spoken voice. (The fixed-price claim is gone.)",
+      "fix": "Remove \"best in town\" and the urgency. Write a warm, plain line about a thoughtful, considered renovation design for your space."
     },
     {
-      "file": "campaigns/renovation-launch/emails/02-how-a-design-comes-together.md",
-      "line": 14,
-      "severity": "medium",
-      "problem": "Step 4 ('Skilled builders bring it to life... the work is carried out with care and precision') implies the studio provides construction. plan.md describes the service as design work 'from concept to construction drawings'. This appears in the main email and all three group versions of email 02.",
-      "fix": "Confirm whether the studio offers construction or build management. If not, reword step 4, for example 'Your plan is ready for builders to work from.' Apply the change to all four versions."
-    },
-    {
-      "file": "campaigns/renovation-launch/emails/01-introduce-our-design-service.md",
-      "line": 8,
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 1,
       "severity": "low",
-      "problem": "'Homeowners across Pakistan' is a service-area claim not supported by brand/voice.md or plan.md. It appears in all four versions of email 01.",
-      "fix": "Confirm the studio's service area, or remove 'across Pakistan' from every version of email 01."
+      "problem": "Subject \"Last chance: renovation design for your home\" (44 characters) is within the limit, but \"Last chance\" is false urgency and salesy.",
+      "fix": "Use a warm subject, e.g. \"Plan your renovation with Naqshar\"."
+    },
+    {
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 2,
+      "severity": "low",
+      "problem": "Preview \"Book now.\" is within 90 characters but is pushy and gives no reason to open.",
+      "fix": "e.g. \"A few thoughtful first steps for your space\"."
+    },
+    {
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 4,
+      "severity": "medium",
+      "problem": "Greeting is \"Hi there,\" not {{first_name}}.",
+      "fix": "Use \"Hi {{first_name}},\"."
+    },
+    {
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 9,
+      "severity": "medium",
+      "problem": "Two links: [See the offer] and [Book now] to /contact/. The rule is exactly one main link, to https://naqshar.com/residential/.",
+      "fix": "Keep one button, e.g. [See the residential designs](https://naqshar.com/residential/), and delete the /contact/ link."
+    },
+    {
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 11,
+      "severity": "medium",
+      "problem": "Sign-off is \"Thanks, Naqshar\" instead of \"Warmly,\" / \"The Naqshar Architect Studio team\".",
+      "fix": "Replace with the voice.md sign-off."
+    },
+    {
+      "file": "campaigns/test-bad/emails/01-bad.md",
+      "line": 13,
+      "severity": "medium",
+      "problem": "The required two-line plain-text footer is missing.",
+      "fix": "Add the two footer lines from .claude/rules/emails.md after the sign-off."
     }
   ]
 }
