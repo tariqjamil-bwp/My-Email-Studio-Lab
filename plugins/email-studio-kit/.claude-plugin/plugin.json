@@ -1,0 +1,9 @@
+{
+  "name": "email-studio-kit",
+  "version": "0.1.0",
+  "description": "Reusable parts of the email studio: personalize a campaign for each lead group, set up the email rules, and run a structured campaign review.",
+  "author": {
+    "name": "Naqshar Email Studio Lab"
+  },
+  "keywords": ["email", "marketing", "campaigns", "review"]
+}
