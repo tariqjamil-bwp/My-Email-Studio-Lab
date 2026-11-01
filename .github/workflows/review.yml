@@ -1,0 +1,59 @@
+name: Email review
+
+on:
+  pull_request:
+    paths:
+      - "campaigns/**"
+      - "brand/**"
+      - ".claude/rules/**"
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Review changed campaigns
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # Campaigns touched by this PR. test-bad is a deliberately bad sample, so skip it.
+          folders=$(git diff --name-only "$BASE_SHA"...HEAD -- campaigns \
+            | cut -d/ -f1,2 | sort -u | grep -v '^campaigns/test-bad$' || true)
+          # Brand or rule changes can affect every campaign, so review them all.
+          if git diff --name-only "$BASE_SHA"...HEAD | grep -qE '^(brand/|\.claude/rules/)'; then
+            folders=$(ls -d campaigns/*/ | sed 's#/$##' | grep -v '^campaigns/test-bad$')
+          fi
+          if [ -z "$folders" ]; then
+            echo "No campaign changes to review."
+            exit 0
+          fi
+          status=0
+          mkdir -p review-results
+          for f in $folders; do
+            [ -d "$f" ] || continue
+            rm -f review/findings.json   # start fresh, don't reuse the committed last review
+            node scripts/review.mjs "$f" || status=$?
+            cp review/findings.json "review-results/$(basename "$f").json" || true
+          done
+          exit $status
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review-findings
+          path: review-results/
+          if-no-files-found: ignore
