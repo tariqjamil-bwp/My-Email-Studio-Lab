@@ -1,0 +1,14 @@
+{
+  "name": "email-studio-lab",
+  "owner": {
+    "name": "Naqshar Email Studio Lab"
+  },
+  "description": "Reusable email studio tools for planning, personalizing and reviewing email campaigns.",
+  "plugins": [
+    {
+      "name": "email-studio-kit",
+      "source": "./plugins/email-studio-kit",
+      "description": "Personalize campaigns per lead group, set up email rules, and run a structured campaign review."
+    }
+  ]
+}
