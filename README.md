@@ -2,7 +2,9 @@
 
 A practice studio for planning, writing, personalizing, reviewing and (safely) sending email campaigns with [Claude Code](https://claude.com/claude-code).
 
-The sample brand is **Naqshar Architect Studio**, a small architecture studio launching a renovation design service for homeowners. All customers in this repo are made-up practice people. **No real email is ever sent.**
+The sample brand is **Naqshar Architect Studio**, a small architecture studio launching a renovation design service for homeowners. All customers in this repo are made-up practice people. **No real email is ever sent, except to the owner's personal address for verification.**
+
+> **Practice project.** Naqshar Architect Studio is a real brand, and the author of this repo is linked to it. This repo is still a learning exercise, not an official Naqshar project. The studio name, website links and brand claims in `brand/voice.md` come from the real Naqshar website and are used as sample material, so check any claim against the live site before real use. The customers, reviews and campaign emails are made up, and the emails are not approved for sending to real people.
 
 ## What is in the repo
 
