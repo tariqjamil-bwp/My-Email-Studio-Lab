@@ -1,5 +1,4 @@
 # Handoff: email 01 subject angles
-
 **What each group cares about** (plan assumptions, not yet confirmed by customer data):
 - First-time renovators: understanding the process, with clear next steps.
 - Kitchen and bath upgraders: a focused upgrade that makes the home work better.

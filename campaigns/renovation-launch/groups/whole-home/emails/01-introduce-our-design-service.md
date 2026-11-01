@@ -1,4 +1,4 @@
-Subject: A considered plan for your home
+Subject: A clear plan makes renovating calmer
 Preview: Renovation design for homes that are planned to last.
 
 Hi {{first_name}},
