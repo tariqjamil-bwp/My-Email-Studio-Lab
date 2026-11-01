@@ -1,13 +1,13 @@
 Subject: Ready to plan your renovation?
-Preview: Request a quote, and we'll talk through your project with you.
+Preview: Request an estimate, and we'll talk through your project with you.
 
 Hi {{first_name}},
 
 Over the past few weeks, we've shared how our design process works and answered the questions we hear most. If you're ready to take your first step, now is a good time.
 
-Request a quote, and our team will talk through your project, your space and your goals, whatever stage you are at. You'll receive an estimate based on your project, so you can plan with confidence.
+Request an estimate, and our team will talk through your project, your space and your goals, whatever stage you are at. We'll base it on your project, so you can plan with confidence.
 
-[Request your quote](https://naqshar.com/residential/)
+[Request your estimate](https://naqshar.com/residential/)
 
 We look forward to helping you plan a home that's thoughtful, functional and lasting.
 
