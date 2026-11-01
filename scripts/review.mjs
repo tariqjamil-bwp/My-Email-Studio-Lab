@@ -1,6 +1,6 @@
 // Headless review of a campaign folder. Usage: node scripts/review.mjs <campaign-folder>
 import { spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,8 +12,23 @@ if (!folder) {
 }
 
 const schema = readFileSync(resolve(root, "review/findings.schema.json"), "utf8");
-const prompt =
+let prompt =
   `Review every email in ${folder} against brand/voice.md and .claude/rules/emails.md. Report only real problems.`;
+
+// If the last review was for this same folder, tell Claude what it already found.
+const findingsPath = resolve(root, "review/findings.json");
+if (existsSync(findingsPath)) {
+  try {
+    const prev = JSON.parse(readFileSync(findingsPath, "utf8"));
+    if (prev.folder === folder && Array.isArray(prev.findings)) {
+      prompt +=
+        `\n\nEarlier findings:\n${JSON.stringify(prev.findings, null, 2)}\n\n` +
+        "These are findings from the last review. Report only problems that are new or still not fixed. Don't repeat ones that have been fixed.";
+    }
+  } catch {
+    // Unreadable previous file: review from scratch.
+  }
+}
 
 const run = spawnSync(
   "claude",
@@ -34,7 +49,7 @@ if (!Array.isArray(findings)) {
 }
 
 mkdirSync(resolve(root, "review"), { recursive: true });
-writeFileSync(resolve(root, "review/findings.json"), JSON.stringify({ findings }, null, 2) + "\n");
+writeFileSync(findingsPath, JSON.stringify({ folder, findings }, null, 2) + "\n");
 
 const count = (s) => findings.filter((f) => f.severity === s).length;
 console.log(
