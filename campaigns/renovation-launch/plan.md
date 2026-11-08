@@ -13,12 +13,12 @@ Status: draft from the marketing plugin's campaign-plan skill. Anything marked *
 
 ## 2. Target audience
 
-- **Primary audience:** About 200 homeowners who enquired about a renovation, from `leads/leads.csv`. They fall into three groups:
+- **Primary audience:** About 200 homeowners who enquired about a renovation is the target list size, not yet supplied. Until it is, the practice file `leads/leads.csv` holds 24 made-up customers, eight in each group, and stands in for it. They fall into three groups:
   - **first-time renovators:** have not renovated before and need to understand the process.
   - **kitchen and bath upgraders:** planning a focused upgrade to one or two rooms.
   - **whole-home remodellers:** planning a larger project covering the whole house.
 - **Secondary audience:** None yet.
-- **Pain points and motivations:** **ASSUMPTION:** Homeowners worry about cost surprises, delays and unclear next steps. They want a space that suits their life and feels inspiring. The leads file is currently empty, so this is not yet confirmed by customer data.
+- **Pain points and motivations:** **ASSUMPTION:** Homeowners worry about cost surprises, delays and unclear next steps. They want a space that suits their life and feels inspiring. The practice leads file has 24 made-up customers, so these motivations are still not confirmed by real customer data.
 - **Where they are reached:** Email only, the studio's channel.
 - **Buying stage:** **ASSUMPTION:** Consideration. They have enquired but have not yet asked for a quote.
 
@@ -78,16 +78,16 @@ Small budget, email only, no paid ads. The amount is not provided, so no split i
 
 ## 9. Risks and mitigations
 
-- **Customer groups are undefined.** `leads/leads.csv` is empty, so the group versions can't be written. Mitigation: fill in the leads file first.
+- **Customer groups are practice-only.** `leads/leads.csv` defines the three groups with eight made-up customers each. The real list may split differently. Mitigation: check the groups against the real list before the group versions are used.
 - **The service details and quote process are unconfirmed.** Without them, the emails would be generic. Mitigation: confirm the services and the quote route before drafting Email 1.
-- **Unverified website claims.** The 100% satisfaction guarantee and the percentages in `brand/voice.md` need checking before use. Mitigation: confirm the guarantee terms and the figures, or leave them out.
-- **Accidental sends to real people.** The `send-guard` hook is still a stub. Mitigation: follow the CLAUDE.md rule that email is never sent from this project, and implement the hook before any sending tool is connected.
+- **Partly verified website claims.** On 4 Nov 2026 the homepage confirmed the guarantee, the percentages (now paired with their labels in `brand/voice.md`), and the other claims except the tagline and the "Pixel Perfect" wording, which differ from the brand file. Mitigation: confirm the guarantee terms, the tagline, and the wording before use.
+- **Accidental sends to real people.** The `send-guard` hook is implemented and wired in `.claude/settings.json`. It blocks sends to any address except `@resend.dev` and the owner's, and it blocks broadcasts. Mitigation: keep the hook in place, and do not connect a sending tool that bypasses it.
 - **Timing.** The start date is an assumption. Mitigation: confirm the launch date before the calendar is locked.
 
 ## 10. Next steps
 
 1. Confirm the renovation services, the quote process and the launch date.
-2. Fill in `leads/leads.csv` and define the three customer groups.
-3. Check the website claims in `brand/voice.md`, including the guarantee terms and the percentages.
+2. Replace the 24 practice customers in `leads/leads.csv` with the real list, and confirm the three groups.
+3. Confirm the tagline and "Pixel Perfect" wording, and the guarantee terms, with the studio.
 4. Confirm the quote-request target of 30 and the reporting cadence.
 5. Draft Email 1, then its three group versions, for your review.
