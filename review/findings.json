@@ -1,4 +1,19 @@
 {
   "folder": "campaigns/renovation-launch",
-  "findings": []
+  "findings": [
+    {
+      "file": "campaigns/renovation-launch/emails/04-ready-to-plan-your-renovation.md",
+      "line": 8,
+      "severity": "low",
+      "problem": "The CTA says \"Request an estimate\" (button: \"Request your estimate\"), but plan.md sets the KPI as quote requests, names the next step \"Request a quote\", and points to a \"Get A Quote\" button on the website. The same wording appears in the group 04 files (first-time, kitchen-bath, whole-home).",
+      "fix": "Align the wording: change \"estimate\" to \"quote\" in the body and button of all four 04 files, or update plan.md and the website button name to match \"estimate\". Confirm the studio's term first."
+    },
+    {
+      "file": "campaigns/renovation-launch/groups/first-time/emails/01-introduce-our-design-service.md",
+      "line": 1,
+      "severity": "low",
+      "problem": "Subject and Preview lines are identical across the first-time, kitchen-bath and whole-home versions of all four emails. Only the body changes, so the group versions cannot be told apart by subject or preview. This works against the plan's goal of learning which group responds to which message.",
+      "fix": "Write a distinct Subject and Preview for each group in each of the four emails (for example, a kitchen-and-bath subject for kitchen-bath). Keep each Subject to 50 characters or fewer and each Preview to 90 or fewer."
+    }
+  ]
 }

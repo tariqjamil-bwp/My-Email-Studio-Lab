@@ -36,13 +36,22 @@ We write to homeowners planning a renovation. We sound like a knowledgeable frie
 
 These come from the Naqshar homepage. Keep them as written, and check each one before it goes into an email.
 
-- Tagline: "Building Ideas Into Lasting Spaces."
-- "Setting a benchmark for quality of spaces."
-- "100% Satisfaction Guarantee."
-- "Pixel Perfect Design": every detail is crafted with precision.
-- "Quality Architect Design" and "Professional concept development."
-- "Shaping cityscapes since 2020."
-- Expertise percentages on the homepage: 82%, 86%, 89%, 90%, 92% and 94%. The page text doesn't clearly pair each figure with its label, so check them on the live site before using any of them.
+Checked against the homepage on 4 Nov 2026. Each check was made with a summary of the page, so confirm wording on the live site before publishing.
+
+- Tagline: "Building Ideas Into Lasting Spaces." **Does not match.** The homepage heading reads "Setting a benchmark for quality of spaces from Outside The World." Confirm which tagline is current before using either.
+- "Setting a benchmark for quality of spaces." **Matches,** as part of the homepage heading above.
+- "100% Satisfaction Guarantee." **Matches.** Confirm the guarantee terms before using it in an email.
+- "Pixel Perfect Design": **wording differs.** The homepage says "Our pixel-perfect approach delivers refined designs that are both elegant and highly functional." Use the homepage wording.
+- "Quality Architect Design" and "Professional concept development." **Match.**
+- "Shaping cityscapes since 2020." **Matches in meaning.** The homepage spells it "Shapping cityscape since 2020." Use this file's spelling, and check it before publishing.
+- Expertise percentages, as shown on the homepage:
+  - Urban Design: 82%
+  - Realestate Management: 86%
+  - Architecture Design: 89%
+  - Interior Design: 90%
+  - Design & Build: 90%
+  - Building Material: 92%
+  - Industrial Design: 94%
 
 ## How we sign off
 
